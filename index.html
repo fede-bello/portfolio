@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fede se recibe de Ingeniero</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        overflow: hidden;
+      }
+
+      .container {
+        text-align: center;
+        padding: 2rem;
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        width: 90%;
+      }
+
+      .title {
+        font-size: 3rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        to {
+          text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+        }
+      }
+
+      .target-date {
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+        opacity: 0.9;
+        font-weight: 300;
+      }
+
+      .countdown {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+      }
+
+      .time-unit {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 2rem 1.5rem;
+        min-width: 120px;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .time-unit:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .time-number {
+        font-family: "Orbitron", monospace;
+        font-size: 3rem;
+        font-weight: 900;
+        display: block;
+        color: #fff;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        line-height: 1;
+      }
+
+      .time-label {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-top: 0.5rem;
+        opacity: 0.8;
+        font-weight: 400;
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+        overflow: hidden;
+        margin: 2rem 0;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+        border-radius: 3px;
+        transition: width 1s ease;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      }
+
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        animation: float 6s infinite linear;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .completed {
+        display: none;
+        text-align: center;
+      }
+
+      .completed.show {
+        display: block;
+        animation: celebrate 1s ease-in-out;
+      }
+
+      @keyframes celebrate {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      .completed h2 {
+        font-size: 4rem;
+        color: #ff6b6b;
+        margin-bottom: 1rem;
+        text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+      }
+
+      @media (max-width: 768px) {
+        .title {
+          font-size: 2rem;
+        }
+
+        .countdown {
+          gap: 1rem;
+        }
+
+        .time-unit {
+          min-width: 100px;
+          padding: 1.5rem 1rem;
+        }
+
+        .time-number {
+          font-size: 2rem;
+        }
+
+        .time-label {
+          font-size: 0.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+      <h1 class="title">Fede se recibe de Ingeniero</h1>
+      <p class="target-date">
+        Viernes 13 de Junio, 2025 a las 4:00 PM (Uruguay)
+      </p>
+
+      <div class="countdown" id="countdown">
+        <div class="time-unit">
+          <span class="time-number" id="days">00</span>
+          <span class="time-label">Días</span>
+        </div>
+        <div class="time-unit">
+          <span class="time-number" id="hours">00</span>
+          <span class="time-label">Horas</span>
+        </div>
+        <div class="time-unit">
+          <span class="time-number" id="minutes">00</span>
+          <span class="time-label">Minutos</span>
+        </div>
+        <div class="time-unit">
+          <span class="time-number" id="seconds">00</span>
+          <span class="time-label">Segundos</span>
+        </div>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <div class="completed" id="completed">
+        <h2>🎉 Time's Up! 🎉</h2>
+        <p>The countdown has reached its destination!</p>
+      </div>
+    </div>
+
+    <script>
+      // Target date: June 13, 2025 at 16:00 Uruguay time (UTC-3)
+      const targetDate = new Date("2025-06-13T16:00:00-03:00").getTime();
+      const startDate = new Date().getTime();
+
+      // Create floating particles
+      function createParticles() {
+        const particlesContainer = document.getElementById("particles");
+        for (let i = 0; i < 50; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.animationDelay = Math.random() * 6 + "s";
+          particle.style.animationDuration = Math.random() * 3 + 3 + "s";
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const timeLeft = targetDate - now;
+
+        if (timeLeft > 0) {
+          const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          const minutes = Math.floor(
+            (timeLeft % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+          // Update display with padding
+          document.getElementById("days").textContent = String(days).padStart(
+            2,
+            "0"
+          );
+          document.getElementById("hours").textContent = String(hours).padStart(
+            2,
+            "0"
+          );
+          document.getElementById("minutes").textContent = String(
+            minutes
+          ).padStart(2, "0");
+          document.getElementById("seconds").textContent = String(
+            seconds
+          ).padStart(2, "0");
+
+          // Update progress bar
+          const totalTime = targetDate - startDate;
+          const elapsed = now - startDate;
+          const progress = (elapsed / totalTime) * 100;
+          document.getElementById("progressFill").style.width =
+            Math.min(progress, 100) + "%";
+        } else {
+          // Countdown finished
+          document.getElementById("countdown").style.display = "none";
+          document.getElementById("completed").classList.add("show");
+          document.getElementById("progressFill").style.width = "100%";
+        }
+      }
+
+      // Initialize
+      createParticles();
+      updateCountdown();
+
+      // Update every second
+      setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>
