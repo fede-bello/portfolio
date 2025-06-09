@@ -699,6 +699,41 @@
         z-index: 1000;
       }
 
+      .calendar-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+        padding: 15px 30px;
+        background: linear-gradient(45deg, #4285F4, #34A853);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .calendar-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      }
+
+      .calendar-button:active {
+        transform: translateY(1px);
+      }
+
+      .calendar-icon {
+        font-size: 1.3rem;
+      }
+
       @media (max-width: 768px) {
         .title {
           font-size: 2.5rem;
@@ -807,6 +842,11 @@
           >
           </iframe>
         </div>
+
+        <button id="calendarButton" class="calendar-button">
+          <span class="calendar-icon">📅</span>
+          Agregar a Google Calendar
+        </button>
       </div>
     </div>
 
@@ -1230,6 +1270,11 @@
       createFedericoPhotos();
       createShootingStars();
       updateCountdown();
+
+      // Google Calendar button functionality
+      document.getElementById('calendarButton').addEventListener('click', () => {
+        window.open('https://calendar.app.google/1zn9HPmdk93XAfGVA', '_blank');
+      });
 
       // Update every second
       setInterval(updateCountdown, 1000);
