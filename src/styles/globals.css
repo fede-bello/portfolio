@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-inter antialiased;
+}
+
+/* Smooth scroll behavior on programmatic scrolls */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Skeleton animation */
+.skeleton {
+  @apply bg-slate-200 dark:bg-slate-800 rounded-md animate-pulse;
+}
