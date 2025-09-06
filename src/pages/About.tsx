@@ -7,7 +7,10 @@ import { SocialLinks } from "@/components/SocialLinks";
 export function AboutPage() {
   return (
     <div>
-      <SectionHeader title="About Me" subtitle="[Your Bio Here]" />
+      <SectionHeader
+        title="About Me"
+        subtitle="ML Engineer at Tryolabs • ML, Applied Mathematics, Programming"
+      />
       <Container className="max-w-5xl pb-16 grid md:grid-cols-3 gap-6">
         <div className="md:col-span-1">
           <div className="relative aspect-square w-full overflow-hidden rounded-xl">
@@ -23,23 +26,23 @@ export function AboutPage() {
         </div>
         <div className="md:col-span-2 space-y-4 leading-7 text-slate-700 dark:text-slate-200">
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            Brief introduction: [Add a concise summary of who you are and what
-            you do].
+            I'm a Machine Learning Engineer at Tryolabs, focused on building and
+            deploying ML systems in production. I hold a degree in
+            Telecommunications Systems Engineering from the University of the
+            Republic (UdelaR), where I specialized in signal processing and
+            information theory. At the university, I've taught programming
+            courses and worked as a research assistant with the Information
+            Theory Group, conducting research on DNA storage systems.
           </motion.p>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.05 }}
           >
-            Interests: [Machine Learning, Signal Processing, Backend
-            Development, etc.]
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.1 }}
-          >
-            Currently: [What you are working on right now].
+            My main interests are machine learning, applied mathematics with a
+            focus on signal processing, and programming. I enjoy building
+            practical, reliable ML systems end to end, drawing on my background
+            in signal processing, data modeling, and backend development.
           </motion.p>
 
           <div className="pt-2">
