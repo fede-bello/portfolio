@@ -7,10 +7,7 @@ export function useTheme() {
     try {
       const stored = localStorage.getItem("theme") as Theme | null;
       if (stored === "light" || stored === "dark") return stored;
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      return prefersDark ? "dark" : "light";
+      return "light";
     } catch {
       return "light";
     }

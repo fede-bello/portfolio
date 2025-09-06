@@ -28,6 +28,26 @@ npm run build
 npm run preview
 ```
 
+## Prune the project
+
+To find unused dependencies, run:
+
+```bash
+depcheck
+```
+
+To remove them, run:
+
+```bash
+npm prune <package-name>
+```
+
+To find unused code:
+
+```bash
+npm run knip
+```
+
 ## Structure
 
 ```
@@ -40,12 +60,6 @@ npm run preview
   /types         # Shared TypeScript types
 ```
 
-## Notes
-
-- Replace placeholders like [Your Bio Here] with your content.
-- Contact form is non-functional; wire it to a backend or form service.
-- Smooth scrolling is enabled; use anchor links as needed.
-
 ## Theming
 
 - Theme stored in localStorage under `theme` and applied as `dark` class on `<html>`.
@@ -54,3 +68,11 @@ npm run preview
 ## Accessibility
 
 - Semantic HTML, proper labels, and focus styles.
+
+## Stack
+
+- Vite + React + TypeScript for fast DX and type safety
+- Tailwind CSS for utility-first styling and theming (dark via class)
+- React Router for client-side routing
+- Framer Motion for subtle transitions
+- Radix UI primitives (Switch) and Lucide icons for accessible, modern UI

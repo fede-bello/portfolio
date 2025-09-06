@@ -2,13 +2,12 @@ import { Link, NavLink } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Menu } from "lucide-react";
 import { useState } from "react";
-import { clsx } from "clsx";
+import clsx from "clsx";
 
 const navItems = [
   { to: "/", label: "About Me" },
   { to: "/experience", label: "Experience" },
-  { to: "/university", label: "University" },
-  { to: "/projects", label: "Personal Projects" },
+  { to: "/projects", label: "Projects" },
   { to: "/publications", label: "Publications" },
   { to: "/contact", label: "Contact Me" },
 ];

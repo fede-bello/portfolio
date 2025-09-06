@@ -1,16 +1,18 @@
 import { SectionHeader } from "@/components/SectionHeader";
 import { motion } from "framer-motion";
 import { Skeleton } from "@/components/Skeleton";
+import { Container } from "@/components/Container";
+import { Panel } from "@/components/Panel";
 
 export function AboutPage() {
   return (
     <div>
       <SectionHeader title="About Me" subtitle="[Your Bio Here]" />
-      <div className="container max-w-5xl pb-16 grid md:grid-cols-3 gap-6">
+      <Container className="max-w-5xl pb-16 grid md:grid-cols-3 gap-6">
         <div className="md:col-span-1">
-          <div className="aspect-square w-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">
+          <Panel className="p-0 aspect-square w-full overflow-hidden">
             <Skeleton className="w-full h-full" />
-          </div>
+          </Panel>
           <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
             Photo placeholder. Use the normalphoto option if you prefer.
           </p>
@@ -36,7 +38,7 @@ export function AboutPage() {
             Currently: [What you are working on right now].
           </motion.p>
         </div>
-      </div>
+      </Container>
     </div>
   );
 }

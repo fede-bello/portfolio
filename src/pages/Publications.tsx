@@ -1,4 +1,6 @@
 import { SectionHeader } from "@/components/SectionHeader";
+import { Container } from "@/components/Container";
+import { Panel } from "@/components/Panel";
 
 const publications = [
   {
@@ -19,12 +21,9 @@ export function PublicationsPage() {
         title="Publications"
         subtitle="[Peer-reviewed work and talks]"
       />
-      <div className="container max-w-5xl pb-16 space-y-6">
+      <Container className="max-w-5xl pb-16 space-y-6">
         {publications.map((pub) => (
-          <div
-            key={pub.title}
-            className="rounded-xl border border-slate-200 dark:border-slate-800 p-5"
-          >
+          <Panel key={pub.title}>
             <h3 className="text-lg font-semibold">{pub.title}</h3>
             <p className="text-sm text-slate-500 dark:text-slate-400">
               {pub.venue} · {pub.date} · {pub.location}
@@ -35,9 +34,9 @@ export function PublicationsPage() {
             <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
               {pub.authors}
             </p>
-          </div>
+          </Panel>
         ))}
-      </div>
+      </Container>
     </div>
   );
 }
