@@ -26,7 +26,7 @@ export function AboutPage() {
         </div>
         <div className="md:col-span-2 space-y-4 leading-7 text-slate-700 dark:text-slate-200">
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            I'm a <strong>Machine Learning Engineer</strong> at{" "}
+            I currently work as a <strong>Machine Learning Engineer</strong> at{" "}
             <a
               href="https://tryolabs.com/"
               target="_blank"
@@ -35,8 +35,8 @@ export function AboutPage() {
             >
               Tryolabs
             </a>
-            , focused on building and deploying <strong>ML systems</strong> in
-            production. I hold a degree in{" "}
+            , where I focus on building and deploying{" "}
+            <strong>ML systems</strong> in production. I hold a degree in{" "}
             <strong>Telecommunications Systems Engineering</strong> from the{" "}
             <a
               href="https://www.fing.edu.uy/"
@@ -47,10 +47,17 @@ export function AboutPage() {
               Faculty of Engineering
             </a>{" "}
             of the University of the Republic (UdelaR), where I specialized in
-            signal processing and information theory. At the university, I've
-            taught programming courses and worked as a research assistant with
-            the Information Theory Group, conducting research on DNA storage
-            systems.
+            signal processing and information theory.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.05 }}
+          >
+            I also have <strong>academic experience</strong> as a Professor at
+            the UdelaR, where I <strong>taught programming courses</strong> and
+            contributed to <strong>research</strong> in the Information Theory
+            Group, focusing on DNA storage systems.
           </motion.p>
           <motion.p
             initial={{ opacity: 0 }}
