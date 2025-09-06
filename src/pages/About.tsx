@@ -2,6 +2,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { motion } from "framer-motion";
 import { Container } from "@/components/Container";
 import meImage from "@/assets/images/me.png";
+import { SocialLinks } from "@/components/SocialLinks";
 
 export function AboutPage() {
   return (
@@ -40,6 +41,15 @@ export function AboutPage() {
           >
             Currently: [What you are working on right now].
           </motion.p>
+
+          <div className="pt-2">
+            <h2 className="text-sm font-semibold tracking-wide text-slate-500 dark:text-slate-400">
+              Connect with me
+            </h2>
+            <div className="mt-3">
+              <SocialLinks />
+            </div>
+          </div>
         </div>
       </Container>
     </div>
