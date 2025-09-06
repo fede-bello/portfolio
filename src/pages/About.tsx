@@ -26,22 +26,41 @@ export function AboutPage() {
         </div>
         <div className="md:col-span-2 space-y-4 leading-7 text-slate-700 dark:text-slate-200">
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            I'm a Machine Learning Engineer at Tryolabs, focused on building and
-            deploying ML systems in production. I hold a degree in
-            Telecommunications Systems Engineering from the University of the
-            Republic (UdelaR), where I specialized in signal processing and
-            information theory. At the university, I've taught programming
-            courses and worked as a research assistant with the Information
-            Theory Group, conducting research on DNA storage systems.
+            I'm a <strong>Machine Learning Engineer</strong> at{" "}
+            <a
+              href="https://tryolabs.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              Tryolabs
+            </a>
+            , focused on building and deploying <strong>ML systems</strong> in
+            production. I hold a degree in{" "}
+            <strong>Telecommunications Systems Engineering</strong> from the{" "}
+            <a
+              href="https://www.fing.edu.uy/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              Faculty of Engineering
+            </a>{" "}
+            of the University of the Republic (UdelaR), where I specialized in
+            signal processing and information theory. At the university, I've
+            taught programming courses and worked as a research assistant with
+            the Information Theory Group, conducting research on DNA storage
+            systems.
           </motion.p>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.05 }}
           >
-            My main interests are machine learning, applied mathematics with a
-            focus on signal processing, and programming. I enjoy building
-            practical, reliable ML systems end to end, drawing on my background
+            My main interests are <strong>machine learning</strong>,{" "}
+            <strong>applied mathematics</strong> with a focus on signal
+            processing, and <strong>programming</strong>. I enjoy building
+            practical, reliable end-to-end ML systems, drawing on my background
             in signal processing, data modeling, and backend development.
           </motion.p>
 
