@@ -4,6 +4,12 @@
 
 :root {
   color-scheme: light dark;
+  /* Motion tokens */
+  --duration-100: 120ms;
+  --duration-200: 200ms;
+  --duration-300: 280ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
 }
 
 html,
@@ -19,6 +25,56 @@ body {
 /* Smooth scroll behavior on programmatic scrolls */
 html {
   scroll-behavior: smooth;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 80ms !important;
+  }
+}
+
+/* Route progress bar */
+.route-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: transparent;
+  z-index: 60;
+  pointer-events: none;
+}
+.route-progress[data-state="loading"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 20%;
+  background: linear-gradient(
+    90deg,
+    theme(colors.sky.500),
+    theme(colors.sky.400)
+  );
+  border-radius: 9999px;
+  animation: route-progress-indeterminate var(--duration-300)
+    var(--ease-standard) infinite;
+}
+
+@keyframes route-progress-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
 }
 
 /* Skeleton animation */

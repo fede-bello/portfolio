@@ -1,8 +1,9 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Menu } from "lucide-react";
 import { useState } from "react";
 import clsx from "clsx";
+import { PrefetchNavLink } from "@/components/PrefetchLink";
 
 const navItems = [
   { to: "/", label: "About Me" },
@@ -23,9 +24,10 @@ export function Navbar() {
         </Link>
         <div className="hidden md:flex items-center gap-6">
           {navItems.map((item) => (
-            <NavLink
+            <PrefetchNavLink
               key={item.to}
               to={item.to}
+              hitArea="comfortable"
               className={({ isActive }) =>
                 clsx(
                   "text-sm font-medium transition-colors hover:text-slate-900 dark:hover:text-white",
@@ -36,7 +38,7 @@ export function Navbar() {
               }
             >
               {item.label}
-            </NavLink>
+            </PrefetchNavLink>
           ))}
           <ThemeToggle />
         </div>
@@ -60,7 +62,7 @@ export function Navbar() {
         >
           <div className="container py-2 flex flex-col gap-1">
             {navItems.map((item) => (
-              <NavLink
+              <PrefetchNavLink
                 key={item.to}
                 to={item.to}
                 onClick={() => setOpen(false)}
@@ -74,7 +76,7 @@ export function Navbar() {
                 }
               >
                 {item.label}
-              </NavLink>
+              </PrefetchNavLink>
             ))}
             <div className="py-2">
               <ThemeToggle />
