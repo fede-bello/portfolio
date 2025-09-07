@@ -1,4 +1,4 @@
-import { FeatherIcon } from "@/components/FeatherIcon";
+import { Icon } from "@/components/Icon";
 
 type Props = {
   period: string;
@@ -14,14 +14,14 @@ export function LeftRailMeta({ period, location, className }: Props) {
       }`}
     >
       <div className="flex items-center gap-2">
-        <FeatherIcon
+        <Icon
           name="calendar"
           className="size-4 text-slate-500 dark:text-slate-400"
         />
         <span>{period}</span>
       </div>
       <div className="mt-2 flex items-center gap-2">
-        <FeatherIcon
+        <Icon
           name="map-pin"
           className="size-4 text-slate-500 dark:text-slate-400"
         />

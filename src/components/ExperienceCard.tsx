@@ -2,7 +2,7 @@ import { Panel } from "@/components/Panel";
 import { LeftRailMeta } from "@/components/LeftRailMeta";
 import { TechBadge } from "@/components/TechBadge";
 import type { Experience } from "@/types/experience";
-import { FeatherIcon } from "@/components/FeatherIcon";
+import { Icon } from "@/components/Icon";
 
 type Props = {
   exp: Experience;
@@ -23,14 +23,14 @@ export function ExperienceCard({ exp }: Props) {
 
           <div className="mt-1 flex items-center gap-4 text-sm text-slate-600 dark:text-slate-300 md:hidden">
             <span className="inline-flex items-center gap-1">
-              <FeatherIcon
+              <Icon
                 name="calendar"
                 className="size-4 text-slate-500 dark:text-slate-400"
               />
               {exp.period}
             </span>
             <span className="inline-flex items-center gap-1">
-              <FeatherIcon
+              <Icon
                 name="map-pin"
                 className="size-4 text-slate-500 dark:text-slate-400"
               />

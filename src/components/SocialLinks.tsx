@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FeatherIcon } from "@/components/FeatherIcon";
+import { Icon } from "@/components/Icon";
 
 type Social = {
   name: string;
@@ -21,9 +21,9 @@ const socials: Social[] = [
       "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-200 group-hover:bg-slate-200 dark:group-hover:bg-slate-700",
   },
   {
-    name: "X",
+    name: "X (Twitter)",
     href: "https://x.com/fede_bello29",
-    icon: "twitter",
+    icon: "X",
     label: "Visit X (Twitter) profile",
     subtitle: "@fede_bello29",
     badgeClasses:
@@ -71,7 +71,7 @@ export function SocialLinks({ className }: Props) {
               <span
                 className={`inline-flex items-center justify-center size-9 rounded-lg transition-colors ${item.badgeClasses}`}
               >
-                <FeatherIcon name={item.icon} className="size-4" />
+                <Icon name={item.icon} className="size-4" />
               </span>
 
               <div className="min-w-0 flex-1">
@@ -80,7 +80,7 @@ export function SocialLinks({ className }: Props) {
                     {item.name}
                   </span>
                   <span className="opacity-0 translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200">
-                    <FeatherIcon
+                    <Icon
                       name="arrow-up-right"
                       className="size-3.5 text-slate-500 dark:text-slate-400"
                     />
