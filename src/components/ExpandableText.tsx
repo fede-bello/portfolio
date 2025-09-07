@@ -11,7 +11,6 @@ export function ExpandableText({
   children,
   collapsedLines = 3,
   className,
-  label = "Expand content",
 }: Props) {
   const [expanded, setExpanded] = useState(false);
   const id = useId();

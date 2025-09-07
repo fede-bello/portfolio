@@ -1,5 +1,3 @@
-import { Fragment } from "react";
-
 const KEY_TERMS = [
   "React",
   "TypeScript",
