@@ -7,8 +7,8 @@ export const experiences: ReadonlyArray<Experience> = [
     period: "Oct 2024 - Present",
     location: "Montevideo, Uruguay",
     summary: [
-      "Contributed to the development of UNICEF’s Geosphere Solution for the Children’s Climate Risk Index, working across design, backend, frontend, and deployment.",
-      "Helped with internal tasks such as onboarding new hires and participating in technical interviews.",
+      "Contribute to the development of <strong>UNICEF’s Geosphere Solution</strong> for the Children’s Climate Risk Index, working across design, backend, frontend, and deployment.",
+      "Help with internal tasks such as <strong>onboarding</strong> new hires and participating in <strong>technical interviews</strong>.",
     ],
 
     stack: ["FastAPI", "LangChain", "LlamaIndex", "Python", "GCP", "AWS"],
@@ -19,9 +19,9 @@ export const experiences: ReadonlyArray<Experience> = [
     period: "Feb 2023 - Feb 2025",
     location: "Montevideo, Uruguay",
     summary: [
-      "Led theoretical and practical classes for Programming 1, teaching imperative programming fundamentals including algorithm design and structured implementation techniques.",
-      "Assisted Programming 2 laboratory sessions, focusing on data abstractions (lists, stacks, queues, binary trees) and implementing them using modularization, good programming practices, and basic algorithm analysis.",
-      "Conducted research on DNA storage with the Information Theory Group.",
+      "<strong>Led</strong> theoretical and practical classes for <strong>Programming 1</strong>, teaching imperative programming fundamentals including algorithm design and structured implementation techniques.",
+      "<strong>Assisted Programming 2</strong> laboratory sessions, focusing on data abstractions (lists, stacks, queues, binary trees) and implementing them using modularization, good programming practices, and basic algorithm analysis.",
+      "<strong>Conducted research on DNA storage</strong> with the Information Theory Group.",
     ],
     stack: ["Pascal", "C++"],
   },
@@ -31,12 +31,11 @@ export const experiences: ReadonlyArray<Experience> = [
     period: "Feb 2024 - Oct 2024",
     location: "Montevideo, Uruguay",
     summary: [
-      "Helped develop the backend for Docshunter, a document management and generation platform.",
-      "Built an API for Docshunter designed to be reused in other client applications.",
-      "Wrote blog posts about technical solutions used in the platform.",
-      "Took part in technical interviews with potential candidates.",
+      "<strong>Worked in the development</strong> of the backend for <strong>Docshunter</strong>, a document management and generation platform. Built an <strong>API</strong> designed to be <strong>reused</strong> in other client applications.",
+      "Wrote <strong>blog posts</strong> about <strong>technical solutions</strong> used in the platform.",
+      "Took part in <strong>technical interviews</strong> with potential candidates.",
     ],
-    stack: ["FastAPI", "Postgres", "Python", "LLMs"],
+    stack: ["FastAPI", "Postgres", "Python", "Langchain"],
   },
   {
     role: "Junior Developer",
@@ -44,7 +43,7 @@ export const experiences: ReadonlyArray<Experience> = [
     period: "Aug 2023 - Feb 2024",
     location: "Montevideo, Uruguay",
     summary: [
-      "Built and implemented web applications using .NET technologies to support risk analysis for national and international banks.",
+      "Built and implemented <strong>web applications</strong> using <strong>.NET</strong> technologies to support risk analysis for national and international banks.",
     ],
     stack: [".NET", "C#", "T-SQL (SQL Server)"],
   },
