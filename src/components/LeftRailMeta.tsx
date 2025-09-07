@@ -6,7 +6,11 @@ type Props = {
   className?: string;
 };
 
-export function LeftRailMeta({ period, location, className }: Props) {
+export function LeftRailMeta({
+  period,
+  location,
+  className,
+}: Props): JSX.Element {
   return (
     <div
       className={`text-sm text-slate-600 dark:text-slate-300 ${

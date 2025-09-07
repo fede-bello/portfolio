@@ -15,17 +15,21 @@ type Props = {
   title?: string;
 };
 
-export const Icon = memo(function Icon({ name, className, title }: Props) {
-  const iconMap: Record<string, IconType> = {
-    github: FiGithub,
-    linkedin: FiLinkedin,
-    "arrow-up-right": FiArrowUpRight,
-    calendar: FiCalendar,
-    "map-pin": FiMapPin,
-    X: FaXTwitter,
-  };
+const ICON_MAP: Record<string, IconType> = {
+  github: FiGithub,
+  linkedin: FiLinkedin,
+  "arrow-up-right": FiArrowUpRight,
+  calendar: FiCalendar,
+  "map-pin": FiMapPin,
+  X: FaXTwitter,
+};
 
-  const Icon = iconMap[name];
+export const Icon = memo(function Icon({
+  name,
+  className,
+  title,
+}: Props): JSX.Element | null {
+  const Icon = ICON_MAP[name];
   if (!Icon) return null;
 
   return (

@@ -5,7 +5,7 @@ type Props = {
   subtitle?: string;
 };
 
-export function SectionHeader({ title, subtitle }: Props) {
+export function SectionHeader({ title, subtitle }: Props): JSX.Element {
   return (
     <div className="container max-w-5xl py-10">
       <motion.h1

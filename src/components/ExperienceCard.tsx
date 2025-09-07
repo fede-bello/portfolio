@@ -8,7 +8,7 @@ type Props = {
   exp: Experience;
 };
 
-export function ExperienceCard({ exp }: Props) {
+export function ExperienceCard({ exp }: Props): JSX.Element {
   return (
     <Panel>
       <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4">

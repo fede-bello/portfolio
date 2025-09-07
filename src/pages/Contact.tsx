@@ -2,7 +2,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { Container } from "@/components/Container";
 import { Panel } from "@/components/Panel";
 
-export function ContactPage() {
+export function ContactPage(): JSX.Element {
   return (
     <div>
       <SectionHeader

@@ -5,7 +5,7 @@ import { AnimatePresence } from "framer-motion";
 import { PageTransition } from "@/components/PageTransition";
 import { RouteProgress } from "@/components/RouteProgress";
 
-export function AppLayout() {
+export function AppLayout(): JSX.Element {
   const location = useLocation();
 
   return (

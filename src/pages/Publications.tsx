@@ -14,7 +14,7 @@ const publications = [
   },
 ];
 
-export function PublicationsPage() {
+export function PublicationsPage(): JSX.Element {
   return (
     <div>
       <SectionHeader

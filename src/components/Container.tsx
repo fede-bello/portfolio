@@ -5,6 +5,6 @@ type Props = {
   className?: string;
 };
 
-export function Container({ children, className }: Props) {
+export function Container({ children, className }: Props): JSX.Element {
   return <div className={`container ${className ?? ""}`}>{children}</div>;
 }

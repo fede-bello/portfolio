@@ -5,7 +5,7 @@ type Props = {
   className?: string;
 };
 
-export function Panel({ children, className }: Props) {
+export function Panel({ children, className }: Props): JSX.Element {
   return (
     <div
       className={`rounded-xl border border-slate-200 dark:border-slate-800 p-5 ${

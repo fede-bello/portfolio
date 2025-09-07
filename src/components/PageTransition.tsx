@@ -6,7 +6,15 @@ type Props = {
   routeKey: string;
 };
 
-export function PageTransition({ children, routeKey }: Props) {
+function focusMainHeading(element: HTMLElement | null) {
+  if (!element) return;
+  const mainHeading = element.querySelector<HTMLElement>(
+    "h1, [data-page-title=true]"
+  );
+  (mainHeading ?? element).focus({ preventScroll: true });
+}
+
+export function PageTransition({ children, routeKey }: Props): JSX.Element {
   const shouldReduceMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -14,13 +22,7 @@ export function PageTransition({ children, routeKey }: Props) {
     const element = containerRef.current;
     if (!element) return;
     let handle: number | undefined;
-    const onAnimationComplete = () => {
-      const mainHeading = element.querySelector<HTMLElement>(
-        "h1, [data-page-title=true]"
-      );
-      (mainHeading ?? element).focus({ preventScroll: true });
-    };
-    handle = window.requestAnimationFrame(onAnimationComplete);
+    handle = window.requestAnimationFrame(() => focusMainHeading(element));
     return () => {
       if (handle) window.cancelAnimationFrame(handle);
     };
@@ -46,14 +48,7 @@ export function PageTransition({ children, routeKey }: Props) {
       animate={animate}
       exit={exit}
       transition={transition}
-      onAnimationComplete={() => {
-        const element = containerRef.current;
-        if (!element) return;
-        const mainHeading = element.querySelector<HTMLElement>(
-          "h1, [data-page-title=true]"
-        );
-        (mainHeading ?? element).focus({ preventScroll: true });
-      }}
+      onAnimationComplete={() => focusMainHeading(containerRef.current)}
       tabIndex={-1}
     >
       {children}

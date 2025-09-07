@@ -2,7 +2,7 @@ import { useTheme } from "@/hooks/useTheme";
 import { Moon, Sun } from "lucide-react";
 import * as Switch from "@radix-ui/react-switch";
 
-export function ThemeToggle() {
+export function ThemeToggle(): JSX.Element {
   const { theme, toggle } = useTheme();
   const isDark = theme === "dark";
 

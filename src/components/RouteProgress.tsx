@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigation } from "react-router-dom";
 
-export function RouteProgress() {
+export function RouteProgress(): JSX.Element {
   const navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(false);
 

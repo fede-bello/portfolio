@@ -13,7 +13,17 @@ const navItems = [
   { to: "/contact", label: "Contact Me" },
 ];
 
-export function Navbar() {
+function navLinkClass(base: string) {
+  return ({ isActive }: { isActive: boolean }) =>
+    clsx(
+      base,
+      isActive
+        ? "text-slate-900 dark:text-white"
+        : "text-slate-600 dark:text-slate-300"
+    );
+}
+
+export function Navbar(): JSX.Element {
   const [open, setOpen] = useState(false);
 
   return (
@@ -28,14 +38,9 @@ export function Navbar() {
               key={item.to}
               to={item.to}
               hitArea="comfortable"
-              className={({ isActive }) =>
-                clsx(
-                  "text-sm font-medium transition-colors hover:text-slate-900 dark:hover:text-white",
-                  isActive
-                    ? "text-slate-900 dark:text-white"
-                    : "text-slate-600 dark:text-slate-300"
-                )
-              }
+              className={navLinkClass(
+                "text-sm font-medium transition-colors hover:text-slate-900 dark:hover:text-white"
+              )}
             >
               {item.label}
             </PrefetchNavLink>
@@ -66,14 +71,9 @@ export function Navbar() {
                 key={item.to}
                 to={item.to}
                 onClick={() => setOpen(false)}
-                className={({ isActive }) =>
-                  clsx(
-                    "py-2 text-sm font-medium transition-colors hover:text-slate-900 dark:hover:text-white",
-                    isActive
-                      ? "text-slate-900 dark:text-white"
-                      : "text-slate-600 dark:text-slate-300"
-                  )
-                }
+                className={navLinkClass(
+                  "py-2 text-sm font-medium transition-colors hover:text-slate-900 dark:hover:text-white"
+                )}
               >
                 {item.label}
               </PrefetchNavLink>

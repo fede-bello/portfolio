@@ -15,7 +15,7 @@ const courses = [
   { name: "[Course Placeholder 3]", description: "[Key topics or outcomes]" },
 ];
 
-export function ProjectsPage() {
+export function ProjectsPage(): JSX.Element {
   return (
     <div>
       <SectionHeader

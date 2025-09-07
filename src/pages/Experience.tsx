@@ -4,7 +4,7 @@ import { Container } from "@/components/Container";
 import { experiences } from "@/experience/data";
 import { ExperienceCard } from "@/components/ExperienceCard";
 
-export function ExperiencePage() {
+export function ExperiencePage(): JSX.Element {
   return (
     <div>
       <SectionHeader

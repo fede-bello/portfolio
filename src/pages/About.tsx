@@ -4,7 +4,7 @@ import { Container } from "@/components/Container";
 import meImage from "@/assets/images/me.png";
 import { SocialLinks } from "@/components/SocialLinks";
 
-export function AboutPage() {
+export function AboutPage(): JSX.Element {
   return (
     <div>
       <SectionHeader
