@@ -2,30 +2,14 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { motion } from "framer-motion";
 import { Container } from "@/components/Container";
 import { Panel } from "@/components/Panel";
-
-const experiences = [
-  {
-    role: "Machine Learning Engineer",
-    company: "Tryolabs",
-    period: "Oct 2024 - Present",
-    location: "Montevideo, Uruguay",
-    summary: "[High-level description of role and impact here]",
-  },
-  {
-    role: "Teaching and Research Assistant",
-    company: "InCo - UdelaR",
-    period: "Feb 2023 - Feb 2025",
-    location: "Montevideo, Uruguay",
-    summary: "[Teaching and lab assistance responsibilities and outcomes]",
-  },
-];
+import { experiences } from "@/experience/data";
 
 export function ExperiencePage() {
   return (
     <div>
       <SectionHeader
         title="Experience"
-        subtitle="[Your professional journey and roles]"
+        subtitle="Engineering, teaching, and research across ML and software"
       />
       <Container className="max-w-5xl pb-16 space-y-6">
         {experiences.map((exp) => (
@@ -43,9 +27,25 @@ export function ExperiencePage() {
                   {exp.period} · {exp.location}
                 </p>
               </div>
-              <p className="mt-2 text-slate-700 dark:text-slate-200">
-                {exp.summary}
-              </p>
+              {exp.summary && exp.summary.length > 0 ? (
+                <ul className="mt-2 list-disc pl-5 text-slate-700 dark:text-slate-200 space-y-1">
+                  {exp.summary.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              ) : null}
+              {exp.stack && exp.stack.length > 0 ? (
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {exp.stack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="inline-flex items-center rounded-full border border-slate-200 dark:border-slate-700 px-2.5 py-0.5 text-xs text-slate-600 dark:text-slate-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
             </Panel>
           </motion.div>
         ))}
