@@ -10,7 +10,7 @@ type Props = {
 
 export function ExperienceCard({ exp }: Props) {
   return (
-    <Panel className="transition-all hover:shadow-sm hover:-translate-y-0.5">
+    <Panel>
       <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4">
         <LeftRailMeta period={exp.period} location={exp.location} />
 
