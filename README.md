@@ -76,3 +76,13 @@ npm run knip
 - React Router for client-side routing
 - Framer Motion for subtle transitions
 - Radix UI primitives (Switch) and Lucide icons for accessible, modern UI
+
+## Contact form (FormSubmit)
+
+The `contact` page posts to FormSubmit using an environment-configured endpoint.
+
+- Set the endpoint in a `.env` file (to send to your inbox):
+
+```bash
+VITE_FORMSUBMIT_ENDPOINT=https://formsubmit.co/ajax/<mail-address>
+```

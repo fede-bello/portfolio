@@ -6,6 +6,7 @@ import {
   FiArrowUpRight,
   FiCalendar,
   FiMapPin,
+  FiCheckCircle,
 } from "react-icons/fi";
 import { FaXTwitter } from "react-icons/fa6";
 
@@ -21,6 +22,7 @@ const ICON_MAP: Record<string, IconType> = {
   "arrow-up-right": FiArrowUpRight,
   calendar: FiCalendar,
   "map-pin": FiMapPin,
+  "check-circle": FiCheckCircle,
   X: FaXTwitter,
 };
 
