@@ -7,8 +7,9 @@ export const experiences: ReadonlyArray<Experience> = [
     period: "Oct 2024 - Present",
     location: "Montevideo, Uruguay",
     summary: [
-      "Contribute to the development of <strong>UNICEF’s Geosphere Solution</strong> for the Children’s Climate Risk Index, working across design, backend, frontend, and deployment.",
-      "Help with internal tasks such as <strong>onboarding</strong> new hires and participating in <strong>technical interviews</strong>.",
+      // "Contribute to the development of <strong>UNICEF’s Geosphere Solution</strong> for the Children’s Climate Risk Index, working across design, backend, frontend, and deployment.",
+      "<PLACEHOLDER> Contribute to the development of ML projects</PLACEHOLDER>",
+      "Help with internal tasks such as <strong>onboarding</strong>", //  new hires and participating in <strong>technical interviews</strong>.",
     ],
 
     stack: ["FastAPI", "LangChain", "LlamaIndex", "Python", "GCP", "AWS"],
