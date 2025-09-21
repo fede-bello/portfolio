@@ -7,9 +7,20 @@ export function useTheme() {
     try {
       const stored = localStorage.getItem("theme") as Theme | null;
       if (stored === "light" || stored === "dark") return stored;
-      return "light";
+      const prefersDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      return prefersDark ? "dark" : "light";
     } catch {
-      return "light";
+      // On SSR or storage access issues, gracefully fall back to system preference if available
+      try {
+        const prefersDark =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        return prefersDark ? "dark" : "light";
+      } catch {
+        return "light";
+      }
     }
   });
 
