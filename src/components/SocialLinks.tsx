@@ -63,10 +63,8 @@ export function SocialLinks({ className }: Props): JSX.Element {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={item.label}
-            className="group relative block rounded-xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-950/60 backdrop-blur supports-[backdrop-filter]:bg-white/40 px-4 py-3 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:focus-visible:ring-slate-700"
+            className="group block rounded-xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-950/60 backdrop-blur supports-[backdrop-filter]:bg-white/40 px-4 py-3 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:focus-visible:ring-slate-700"
           >
-            <span className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gradient-to-br from-slate-200/40 to-transparent dark:from-slate-800/30 opacity-0 group-hover:opacity-100 transition-opacity" />
-
             <div className="flex items-center gap-3">
               <span
                 className={`inline-flex items-center justify-center size-9 rounded-lg transition-colors ${item.badgeClasses}`}
