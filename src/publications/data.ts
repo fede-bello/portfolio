@@ -16,7 +16,7 @@ export const publications: ReadonlyArray<Publication> = [
 
 export const conferences: ReadonlyArray<ConferenceEntry> = [
   {
-    event: "LANET 2025 - 4th Latin American Conference on Complex Networks",
+    event: "LANET 2025",
     date: "Aug 2025",
     location: "Punta del Este, Uruguay",
     role: "Speaker",

@@ -2,7 +2,6 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { Container } from "@/components/Container";
 import { Panel } from "@/components/Panel";
 import { Icon } from "@/components/Icon";
-import { LeftRailMeta } from "@/components/LeftRailMeta";
 import { TechBadge } from "@/components/TechBadge";
 import { conferences, publications } from "@/publications/data";
 
@@ -17,11 +16,29 @@ export function PublicationsPage(): JSX.Element {
         {publications.map((pub) => (
           <Panel key={pub.title}>
             <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4">
-              <LeftRailMeta period={pub.date} location={pub.location} />
+              <div className="text-sm text-slate-600 dark:text-slate-300">
+                <div className="font-medium text-slate-700 dark:text-slate-200">
+                  {pub.venue}
+                </div>
+                <div className="mt-2 flex items-center gap-2">
+                  <Icon
+                    name="calendar"
+                    className="size-4 text-slate-500 dark:text-slate-400"
+                  />
+                  <span>{pub.date}</span>
+                </div>
+                <div className="mt-2 flex items-center gap-2">
+                  <Icon
+                    name="map-pin"
+                    className="size-4 text-slate-500 dark:text-slate-400"
+                  />
+                  <span>{pub.location}</span>
+                </div>
+              </div>
               <div className="max-w-[65ch]">
                 <header className="flex flex-wrap items-baseline gap-2">
                   <h3 className="text-lg font-semibold">{pub.title}</h3>
-                  <TechBadge name={pub.venue} />
+                  <TechBadge name="Author" />
                 </header>
 
                 <p className="mt-2 text-slate-700 dark:text-slate-200">
@@ -57,20 +74,33 @@ export function PublicationsPage(): JSX.Element {
               <li key={`${conf.event}-${conf.date}`}>
                 <Panel>
                   <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4">
-                    <LeftRailMeta period={conf.date} location={conf.location} />
+                    <div className="text-sm text-slate-600 dark:text-slate-300">
+                      <div className="font-medium text-slate-700 dark:text-slate-200">
+                        {conf.event}
+                      </div>
+                      <div className="mt-2 flex items-center gap-2">
+                        <Icon
+                          name="calendar"
+                          className="size-4 text-slate-500 dark:text-slate-400"
+                        />
+                        <span>{conf.date}</span>
+                      </div>
+                      <div className="mt-2 flex items-center gap-2">
+                        <Icon
+                          name="map-pin"
+                          className="size-4 text-slate-500 dark:text-slate-400"
+                        />
+                        <span>{conf.location}</span>
+                      </div>
+                    </div>
                     <div className="max-w-[65ch]">
                       <header className="flex flex-wrap items-baseline gap-2">
                         <h3 className="text-base font-semibold">
-                          {conf.event}
+                          {conf.talkTitle ?? conf.event}
                         </h3>
                         <TechBadge name={conf.role} />
                       </header>
 
-                      {conf.talkTitle && (
-                        <p className="mt-2 text-slate-700 dark:text-slate-200">
-                          “{conf.talkTitle}”
-                        </p>
-                      )}
                       {conf.talkDescription && (
                         <p className="mt-1 text-slate-700 dark:text-slate-200">
                           {conf.talkDescription}
