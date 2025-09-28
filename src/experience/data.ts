@@ -8,7 +8,7 @@ export const experiences: ReadonlyArray<Experience> = [
     location: "Montevideo, Uruguay",
     summary: [
       // "Contribute to the development of <strong>UNICEF’s Geosphere Solution</strong> for the Children’s Climate Risk Index, working across design, backend, frontend, and deployment.",
-      "Contribute to the development of ML projects.",
+      "Contribute to the <strong>development of ML projects</strong>.",
       "Help with internal tasks such as onboardings and technical interviews.",
     ],
 
@@ -20,8 +20,8 @@ export const experiences: ReadonlyArray<Experience> = [
     period: "Feb 2023 - Feb 2025",
     location: "Montevideo, Uruguay",
     summary: [
-      "<strong>Led</strong> theoretical and practical classes for <strong>Programming 1</strong>, teaching imperative programming fundamentals including algorithm design and structured implementation techniques.",
-      "<strong>Assisted Programming 2</strong> laboratory sessions, focusing on data abstractions (lists, stacks, queues, binary trees) and implementing them using modularization, good programming practices, and basic algorithm analysis.",
+      "<strong>Led theoretical and practical classes for Programming 1</strong>, teaching imperative programming fundamentals including algorithm design and structured implementation techniques.",
+      "<strong>Assisted Programming 2 laboratory sessions</strong>, focusing on data abstractions (lists, stacks, queues, binary trees) and implementing them using modularization, good programming practices, and basic algorithm analysis.",
       "<strong>Conducted research on DNA storage</strong> with the Information Theory Group.",
     ],
     stack: ["Pascal", "C++"],

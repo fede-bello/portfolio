@@ -30,10 +30,7 @@ export function ProjectCard({
   };
   const [pdf, setPdf] = useState<ProjectAttachment | null>(null);
   const reduce = useReducedMotion();
-  const ignoreClickRef = useRef(true);
   const rootRef = useRef<HTMLDivElement | null>(null);
-
-  const toggle = () => setExpanded((v) => !v);
 
   const timestamp = useMemo(() => project.timestamp, [project.timestamp]);
 
