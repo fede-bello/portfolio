@@ -58,6 +58,7 @@ npm run knip
   /hooks         # Custom hooks
   /styles        # Global CSS (Tailwind)
   /types         # Shared TypeScript types
+  /projects     # Project definitions
 ```
 
 ## Theming
@@ -76,6 +77,29 @@ npm run knip
 - React Router for client-side routing
 - Framer Motion for subtle transitions
 - Radix UI primitives (Switch) and Lucide icons for accessible, modern UI
+
+## Projects Page
+
+Projects are rendered from typed data and support inline PDF viewing.
+
+- Data files: `src/projects/data.ts` exporting `personalProjects` and `universityProjects`.
+- Types: `src/types/projects.ts`.
+- Components used: `ProjectCard`, `PdfList`, `PdfViewerModal`.
+
+### Adding a new project
+
+1. Place PDFs under `public/projects/<group>/<slug>/reports/`.
+   - Example: `public/projects/fing/aagrafos/reports/Report 1.pdf`.
+2. Edit `src/projects/data.ts` and add a new `Project` entry with:
+   - `slug`, `title`, `type` ("personal" | "university"), `timestamp`, `description`.
+   - Optional: `tags`, `tech`, `siteUrl`, `attachments`.
+3. For PDFs, provide `attachments` with absolute hrefs starting with `/projects/...`.
+
+### Viewing and downloading PDFs
+
+- Single PDF: card shows compact View and Download actions.
+- Multiple PDFs: card shows a "Reports (N)" toggle with an animated list.
+- PDFs open in an accessible modal via `<object>` with graceful fallback to `<embed>`.
 
 ## Contact form (FormSubmit)
 
