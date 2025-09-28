@@ -41,15 +41,13 @@ export function ExperienceCard({ exp }: Props): JSX.Element {
           {exp.summary && exp.summary.length > 0 ? (
             <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-800">
               <div className="text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                {exp.period.toLowerCase().includes("present")
-                  ? "What I do"
-                  : "What I did"}
+                Key responsibilities
               </div>
-              <ul className="mt-2 space-y-2 text-slate-700 dark:text-slate-200">
+              <ul className="mt-2 space-y-2 list-disc list-inside text-slate-700 dark:text-slate-200">
                 {exp.summary.map((item) => (
                   <li
                     key={item}
-                    className="list-disc pl-5 marker:text-slate-400 dark:marker:text-slate-500"
+                    className="marker:text-slate-400 dark:marker:text-slate-500"
                     dangerouslySetInnerHTML={{ __html: item }}
                   />
                 ))}
@@ -62,8 +60,8 @@ export function ExperienceCard({ exp }: Props): JSX.Element {
               <div className="text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 Tech
               </div>
-              <div className="mt-2 -mx-1 overflow-x-auto md:overflow-visible">
-                <div className="flex md:flex-wrap flex-nowrap gap-2 px-1">
+              <div className="mt-2 overflow-x-auto md:overflow-visible">
+                <div className="flex md:flex-wrap flex-nowrap gap-2">
                   {exp.stack.map((tech) => (
                     <TechBadge key={tech} name={tech} />
                   ))}
