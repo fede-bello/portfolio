@@ -13,6 +13,7 @@ import {
   FiChevronRight,
   FiFileText,
   FiX,
+  FiExternalLink,
 } from "react-icons/fi";
 import { FaXTwitter } from "react-icons/fa6";
 
@@ -35,6 +36,7 @@ const ICON_MAP: Record<string, IconType> = {
   "chevron-right": FiChevronRight,
   "file-text": FiFileText,
   close: FiX,
+  external: FiExternalLink,
   X: FaXTwitter,
 };
 

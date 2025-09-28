@@ -19,6 +19,23 @@ export function ExperienceCard({ exp }: Props): JSX.Element {
             <h3 className="text-lg font-semibold">
               <strong>{exp.role}</strong> · <strong>{exp.company}</strong>
             </h3>
+            {exp.orgKind === "university" || exp.companyUrl ? (
+              <a
+                href={
+                  exp.orgKind === "university"
+                    ? exp.companyUrl ?? "https://www.fing.edu.uy/es/inco"
+                    : exp.companyUrl
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-sm text-sky-600 hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300"
+              >
+                {exp.orgKind === "university"
+                  ? "Visit Institute"
+                  : "Visit Company"}
+                <Icon name="external" className="size-4" />
+              </a>
+            ) : null}
           </header>
 
           <div className="mt-1 flex items-center gap-4 text-sm text-slate-600 dark:text-slate-300 md:hidden">
@@ -43,7 +60,7 @@ export function ExperienceCard({ exp }: Props): JSX.Element {
               <div className="text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 Key responsibilities
               </div>
-              <ul className="mt-2 space-y-2 list-disc list-inside text-slate-700 dark:text-slate-200">
+              <ul className="mt-2 space-y-2 list-disc list-inside text-slate-700 dark:text-slate-200 [&_a]:text-sky-700 dark:[&_a]:text-sky-300 [&_a]:underline [&_a]:underline-offset-2">
                 {exp.summary.map((item) => (
                   <li
                     key={item}
