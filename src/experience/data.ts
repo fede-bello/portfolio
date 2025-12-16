@@ -38,7 +38,7 @@ export const experiences: ReadonlyArray<Experience> = [
     period: "Feb 2024 - Oct 2024",
     location: "Montevideo, Uruguay",
     summary: [
-      '<strong>Worked in the development</strong> of the backend for <strong><a href="https://docshunter.ai/" target="_blank" rel="noopener noreferrer">Docshunter</a></strong>, a document management and generation platform. Built an <strong>API</strong> designed to be <strong>reused</strong> in other client applications.',
+      '<strong>Worked in the development</strong> of the backend for <a href="https://docshunter.ai/" target="_blank" rel="noopener noreferrer">Docshunter</a>, a document management and generation platform. Built an <strong>API</strong> designed to be <strong>reused</strong> in other client applications.',
       "Wrote <strong>blog posts</strong> about <strong>technical solutions</strong> used in the platform.",
       "Took part in <strong>technical interviews</strong> with potential candidates.",
     ],
