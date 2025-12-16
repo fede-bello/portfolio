@@ -44,6 +44,21 @@ export const personalProjects: ReadonlyArray<Project> = [
   },
 ];
 
+export const freelanceProjects: ReadonlyArray<Project> = [
+  {
+    slug: "vamosarq",
+    title: "VamosArq",
+    type: "freelance",
+    timestamp: "2025",
+    summary:
+      "Portfolio and admin platform for an architecture studio.",
+    description:
+      "A complete web solution for an architecture studio featuring a high-performance frontend with Cloudinary integration for fast image processing and loading. The system includes a secure admin panel built on Firebase, providing authentication and full CRUD capabilities to manage projects dynamically.",
+    tags: ["Frontend", "Firebase", "Cloudinary", "Admin Panel"],
+    siteUrl: "https://www.vamosarq.com/",
+  },
+];
+
 export const universityProjects: ReadonlyArray<Project> = [
   {
     slug: "audio",
