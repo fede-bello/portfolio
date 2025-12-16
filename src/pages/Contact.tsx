@@ -4,6 +4,7 @@ import { Container } from "@/components/Container";
 import { Panel } from "@/components/Panel";
 import { Icon } from "@/components/Icon";
 import { AnimatePresence, motion } from "framer-motion";
+import { SocialLinks } from "@/components/SocialLinks";
 
 export function ContactPage(): JSX.Element {
   const endpoint = import.meta.env.VITE_FORMSUBMIT_ENDPOINT as
@@ -172,8 +173,10 @@ export function ContactPage(): JSX.Element {
   return (
     <div>
       <SectionHeader title="Contact Me" />
-      <Container className="max-w-3xl pb-16">
-        <AnimatePresence mode="wait">
+      <Container className="max-w-5xl pb-16">
+        <div className="grid md:grid-cols-3 gap-12">
+          <div className="md:col-span-2">
+            <AnimatePresence mode="wait">
           {contentKey === "success" ? (
             <motion.div
               key="success"
@@ -407,7 +410,30 @@ export function ContactPage(): JSX.Element {
           tabIndex={-1}
           ref={statusRef}
         ></p>
-      </Container>
+      </div>
+
+      <div className="space-y-8">
+        <section>
+          <h2 className="text-sm font-semibold tracking-wide text-slate-500 dark:text-slate-400 mb-4">
+            Other ways to connect
+          </h2>
+          <SocialLinks className="!grid-cols-1" />
+        </section>
+
+        <section>
+          <h2 className="text-sm font-semibold tracking-wide text-slate-500 dark:text-slate-400 mb-4">
+            Email
+          </h2>
+          <a
+            href="mailto:fedebello13@gmail.com"
+            className="text-slate-900 dark:text-white font-medium hover:underline"
+          >
+            fedebello13@gmail.com
+          </a>
+        </section>
+      </div>
     </div>
-  );
+  </Container>
+</div>
+);
 }
