@@ -54,7 +54,7 @@ export function AboutPage(): JSX.Element {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.05 }}
           >
-            I also have <strong>academic experience</strong> as a Professor at
+            I also have <strong>academic experience</strong> as a Teaching Assistant at
             the UdelaR, where I <strong>taught programming courses</strong> and
             contributed to <strong>research</strong> in the Information Theory
             Group, focusing on DNA storage systems.
