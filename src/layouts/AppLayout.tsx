@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { AnimatePresence } from "framer-motion";
 import { PageTransition } from "@/components/PageTransition";
 import { RouteProgress } from "@/components/RouteProgress";
+import { Analytics } from "@vercel/analytics/react";
 
 export function AppLayout(): JSX.Element {
   const location = useLocation();
@@ -21,6 +22,7 @@ export function AppLayout(): JSX.Element {
       </main>
       <Footer />
       <ScrollRestoration />
+      <Analytics />
     </div>
   );
 }
