@@ -9,7 +9,7 @@ export function AboutPage(): JSX.Element {
     <div>
       <SectionHeader
         title="About Me"
-        subtitle="ML Engineer at Tryolabs • ML, Applied Mathematics, Programming"
+        subtitle="Lead ML Engineer at Tryolabs • ML, Applied Mathematics, Programming"
       />
       <Container className="max-w-5xl pb-16 grid md:grid-cols-3 gap-6">
         <div className="md:col-span-1">
@@ -26,7 +26,8 @@ export function AboutPage(): JSX.Element {
         </div>
         <div className="md:col-span-2 space-y-4 leading-7 text-slate-700 dark:text-slate-200">
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            I currently work as a <strong>Machine Learning Engineer</strong> at{" "}
+            I currently work as a{" "}
+            <strong>Lead Machine Learning Engineer</strong> at{" "}
             <a
               href="https://tryolabs.com/"
               target="_blank"
@@ -35,9 +36,10 @@ export function AboutPage(): JSX.Element {
             >
               Tryolabs
             </a>
-            , where I focus on building and deploying{" "}
-            <strong>ML systems</strong> in production. I hold a degree in{" "}
-            <strong>Telecommunications Systems Engineering</strong> from the{" "}
+            , where I lead the architecture and deployment of AI systems,
+            mentor engineers, and drive strategic AI collaborations. I hold a
+            degree in <strong>Telecommunications Systems Engineering</strong>{" "}
+            from the{" "}
             <a
               href="https://www.fing.edu.uy/"
               target="_blank"
@@ -46,8 +48,8 @@ export function AboutPage(): JSX.Element {
             >
               Faculty of Engineering
             </a>{" "}
-            of the University of the Republic (UdelaR), where I specialized in
-            signal processing and information theory.
+            of the University of the Republic (UdelaR), graduating top of the
+            class with a thesis on anomaly detection with Graph Neural Networks.
           </motion.p>
           <motion.p
             initial={{ opacity: 0 }}
