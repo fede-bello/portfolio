@@ -1,0 +1,11 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.fedebello.com" }],
+      "destination": "https://fedebello.com/:path*",
+      "permanent": true
+    }
+  ],
+  "rewrites": [{ "source": "/((?!api/).*)", "destination": "/index.html" }]
+}
