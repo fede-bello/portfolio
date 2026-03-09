@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# AI bots
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+Sitemap: https://fedebello.com/sitemap.xml

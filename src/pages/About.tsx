@@ -1,7 +1,6 @@
 import { SectionHeader } from "@/components/SectionHeader";
 import { motion } from "framer-motion";
 import { Container } from "@/components/Container";
-import meImage from "@/assets/images/me.png";
 import { SocialLinks } from "@/components/SocialLinks";
 
 export function AboutPage(): JSX.Element {
@@ -15,7 +14,7 @@ export function AboutPage(): JSX.Element {
         <div className="md:col-span-1">
           <div className="relative aspect-square w-full overflow-hidden rounded-xl">
             <motion.img
-              src={meImage}
+              src="/me.png"
               alt="That's me!"
               className="absolute inset-0 w-full h-full object-cover"
               initial={{ opacity: 0, scale: 1.02 }}
@@ -48,8 +47,7 @@ export function AboutPage(): JSX.Element {
             >
               Faculty of Engineering
             </a>{" "}
-            of the University of the Republic (UdelaR), graduating top of the
-            class with a thesis on anomaly detection with Graph Neural Networks.
+            of the University of the Republic (UdelaR), with a thesis on anomaly detection with Graph Neural Networks.
           </motion.p>
           <motion.p
             initial={{ opacity: 0 }}
