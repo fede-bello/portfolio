@@ -6,6 +6,7 @@ import { AnimatePresence } from "framer-motion";
 import { PageTransition } from "@/components/PageTransition";
 import { RouteProgress } from "@/components/RouteProgress";
 import { Analytics } from "@vercel/analytics/react";
+import { getStructuredData } from "@/seo/structured-data";
 
 const BASE_URL = "https://fedebello.com";
 
@@ -73,6 +74,16 @@ export function AppLayout(): JSX.Element {
       document.head.appendChild(canonical);
     }
     canonical.href = `${BASE_URL}${location.pathname}`;
+
+    // Inject per-page structured data (JSON-LD)
+    document.querySelectorAll("script[data-dynamic-schema]").forEach((el) => el.remove());
+    getStructuredData(location.pathname).forEach((schema, i) => {
+      const el = document.createElement("script");
+      el.type = "application/ld+json";
+      el.setAttribute("data-dynamic-schema", String(i));
+      el.textContent = JSON.stringify(schema);
+      document.head.appendChild(el);
+    });
   }, [location.pathname]);
 
   return (
