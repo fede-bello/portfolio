@@ -1,16 +1,18 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./styles/globals.css";
+import { renderToString } from "react-dom/server";
+import {
+  createStaticHandler,
+  createStaticRouter,
+  StaticRouterProvider,
+} from "react-router-dom/server";
 import { AppLayout } from "./layouts/AppLayout";
 import { AboutPage } from "./pages/About";
 import { ExperiencePage } from "./pages/Experience";
 import { ProjectsPage } from "./pages/Projects";
 import { PublicationsPage } from "./pages/Publications";
 import { ContactPage } from "./pages/Contact";
-import { NotFound } from "./pages/NotFound";
 
-const router = createBrowserRouter([
+const routes = [
   {
     path: "/",
     element: <AppLayout />,
@@ -20,21 +22,22 @@ const router = createBrowserRouter([
       { path: "projects", element: <ProjectsPage /> },
       { path: "publications", element: <PublicationsPage /> },
       { path: "contact", element: <ContactPage /> },
-      { path: "*", element: <NotFound /> },
     ],
   },
-]);
+];
 
-const rootEl = document.getElementById("root")!;
-const app = (
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
-);
+export async function render(url: string): Promise<string> {
+  const handler = createStaticHandler(routes);
+  const context = await handler.query(new Request(url));
 
-// Use hydrateRoot when SSR content was pre-rendered, createRoot otherwise (dev)
-if (rootEl.childNodes.length > 0) {
-  ReactDOM.hydrateRoot(rootEl, app);
-} else {
-  ReactDOM.createRoot(rootEl).render(app);
+  if (context instanceof Response) {
+    throw context;
+  }
+
+  const router = createStaticRouter(routes, context);
+  return renderToString(
+    <React.StrictMode>
+      <StaticRouterProvider router={router} context={context} />
+    </React.StrictMode>
+  );
 }

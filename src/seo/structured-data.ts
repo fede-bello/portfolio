@@ -95,7 +95,7 @@ function projectsSchema(): object[] {
           author: AUTHOR,
           ...(proj.repoUrl ? { codeRepository: proj.repoUrl } : {}),
           ...(proj.siteUrl ? { url: proj.siteUrl } : {}),
-          keywords: proj.tags.join(", "),
+          ...(proj.tags ? { keywords: proj.tags.join(", ") } : {}),
         },
       })),
     },
@@ -117,7 +117,7 @@ function experienceSchema(): object[] {
         description: exp.summary
           .map((s) => s.replace(/<[^>]+>/g, ""))
           .join(" "),
-        skills: exp.stack.join(", "),
+        ...(exp.stack ? { skills: exp.stack.join(", ") } : {}),
       })),
     },
   ];
