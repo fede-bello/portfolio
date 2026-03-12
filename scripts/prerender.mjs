@@ -76,6 +76,10 @@ for (const route of routes) {
     .replace(
       /(<meta name="twitter:description" content=")[^"]*(")/,
       `$1${meta.description}$2`
+    )
+    .replace(
+      /(<link rel="canonical" href=")[^"]*(")/,
+      `$1${BASE_URL}${route}$2`
     );
 
   const segment = route === "/" ? "" : route.slice(1);
