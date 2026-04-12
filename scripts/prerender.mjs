@@ -39,8 +39,15 @@ const pageMeta = {
 const template = readFileSync(resolve(root, "dist/index.html"), "utf-8");
 
 // Keep the raw SPA shell as 404.html so unknown routes hydrate cleanly
-writeFileSync(resolve(root, "dist/404.html"), template);
-console.log("Written → dist/404.html (SPA shell)");
+// Add noindex to prevent Google from indexing unknown URLs as duplicates
+const notFoundHtml = template
+  .replace(
+    '<meta name="robots" content="index, follow" />',
+    '<meta name="robots" content="noindex, nofollow" />'
+  )
+  .replace(/<title>[^<]*<\/title>/, "<title>Page Not Found | Federico Bello</title>");
+writeFileSync(resolve(root, "dist/404.html"), notFoundHtml);
+console.log("Written → dist/404.html (SPA shell, noindex)");
 
 const { render } = await import(resolve(root, "dist-server/entry-server.js"));
 

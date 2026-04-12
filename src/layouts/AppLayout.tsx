@@ -73,7 +73,7 @@ export function AppLayout(): JSX.Element {
       canonical.rel = "canonical";
       document.head.appendChild(canonical);
     }
-    canonical.href = `${BASE_URL}${location.pathname}`;
+    canonical.href = location.pathname === "/" ? `${BASE_URL}/` : `${BASE_URL}${location.pathname}`;
 
     // Inject per-page structured data (JSON-LD)
     document.querySelectorAll("script[data-dynamic-schema]").forEach((el) => el.remove());
