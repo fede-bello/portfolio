@@ -36,6 +36,19 @@ export const ventureProjects: ReadonlyArray<Project> = [
 
 export const personalProjects: ReadonlyArray<Project> = [
   {
+    slug: "the-abstract",
+    title: "The Abstract",
+    type: "personal",
+    timestamp: "2025",
+    summary:
+      "Weekly, AI-curated digests of the machine-learning papers worth your attention.",
+    description:
+      "An open-source pipeline that ingests new ML papers from arXiv each week, filters out the noise with an LLM, parses and summarizes the useful ones, stores them with embeddings, and emails subscribers a personalized digest. A lightweight web app lets anyone browse everything it has processed, by week and by topic. It's built as a monorepo around LlamaIndex Workflows with no API server, and uses two-stage cost control: a cheap metadata classifier gates the expensive parse and summarize work, so only papers worth reading get the full treatment. The weekly pipeline runs in production via a GitHub Actions cron.",
+    tags: ["LlamaIndex", "LLMs", "Embeddings", "Supabase", "Python"],
+    siteUrl: "https://the-abstract.vercel.app/",
+    repoUrl: "https://github.com/fede-bello/the-abstract",
+  },
+  {
     slug: "truco",
     title: "Truco",
     type: "personal",
