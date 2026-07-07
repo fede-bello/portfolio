@@ -9,7 +9,7 @@ export type Project = {
   slug: string;
   title: string;
   subtitle?: string;
-  type: "personal" | "university" | "freelance";
+  type: "personal" | "university" | "freelance" | "venture";
   timestamp: string;
   siteUrl?: string;
   repoUrl?: string;

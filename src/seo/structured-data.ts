@@ -3,6 +3,7 @@ import {
   personalProjects,
   freelanceProjects,
   universityProjects,
+  ventureProjects,
 } from "@/projects/data";
 import { experiences } from "@/experience/data";
 
@@ -74,6 +75,7 @@ function publicationsSchema(): object[] {
 
 function projectsSchema(): object[] {
   const allProjects = [
+    ...ventureProjects,
     ...freelanceProjects,
     ...personalProjects,
     ...universityProjects,
