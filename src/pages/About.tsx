@@ -8,7 +8,7 @@ export function AboutPage(): JSX.Element {
     <div>
       <SectionHeader
         title="About Me"
-        subtitle="Lead ML Engineer at Tryolabs • ML, Applied Mathematics, Programming"
+        subtitle="Lead ML Engineer at Tryolabs • Forward Deployed Engineer with LlamaIndex • ML & Applied Mathematics"
       />
       <Container className="max-w-5xl pb-16 grid md:grid-cols-3 gap-6">
         <div className="md:col-span-1">
@@ -35,9 +35,20 @@ export function AboutPage(): JSX.Element {
             >
               Tryolabs
             </a>
-            , where I lead the architecture and deployment of AI systems,
-            mentor engineers, and drive strategic AI collaborations. I hold a
-            degree in <strong>Telecommunications Systems Engineering</strong>{" "}
+            , embedded as a{" "}
+            <strong>Forward Deployed Engineer</strong> with the{" "}
+            <a
+              href="https://www.llamaindex.ai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              LlamaIndex
+            </a>{" "}
+            team, where I deliver AI document-processing solutions for major
+            enterprise clients, lead AI system architecture, and mentor
+            engineers. I hold a degree in{" "}
+            <strong>Telecommunications Systems Engineering</strong>{" "}
             from the{" "}
             <a
               href="https://www.fing.edu.uy/"

@@ -5,6 +5,35 @@ const toAtt = (href: string, title?: string) => ({
   title: title ?? href.split("/").pop() ?? "PDF",
 });
 
+export const ventureProjects: ReadonlyArray<Project> = [
+  {
+    slug: "rupta",
+    title: "Rupta",
+    subtitle: "Co-founder & Technical Lead",
+    type: "venture",
+    timestamp: "2025 - Present",
+    summary:
+      "A social app that turns real life into a game: complete real-world missions, earn AURA, and compete with friends.",
+    description:
+      "A cross-platform social app (React Native + web) built around a catalog of real-life missions, from grabbing a coffee to bigger challenges, plus private groups, streaks, and leaderboards. I led the full-stack architecture and shared styling system across web and mobile. We launched on iOS and Android and passed 5,000 users in the first 24 hours.",
+    tags: ["React Native", "Cross-platform", "Gamification", "Social"],
+    siteUrl: "https://rupta.app/",
+  },
+  {
+    slug: "thehawkeye",
+    title: "The Hawk Eye Football",
+    subtitle: "Co-founder & AI Specialist",
+    type: "venture",
+    timestamp: "2024 - Present",
+    summary:
+      "Sports-intelligence platform that scouts, analyzes, and compares football players across LATAM leagues.",
+    description:
+      "An early-stage sports-intelligence platform that lets professional clubs scout and compare players across 10+ LATAM leagues, ranked by our proprietary TCA Score, which rates how well a player performs in their role and adjusts for the level of their league. On top of that: side-by-side comparisons, player profiles with radars, and match breakdowns (xG, shot maps, build-up). As co-founder, I work across the stack, from ML and data analysis to backend architecture and frontend.",
+    tags: ["Machine Learning", "Sports Analytics", "Data Engineering", "Python"],
+    siteUrl: "https://thehawkeyefootball.com/",
+  },
+];
+
 export const personalProjects: ReadonlyArray<Project> = [
   {
     slug: "truco",
