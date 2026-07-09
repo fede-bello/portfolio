@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const root = resolve(__dirname, "..");
-const BASE_URL = "https://fedebello.com";
+const BASE_URL = "https://www.fedebello.com";
 
 const routes = ["/", "/experience", "/projects", "/publications", "/contact"];
 
@@ -38,8 +38,6 @@ const pageMeta = {
 
 const template = readFileSync(resolve(root, "dist/index.html"), "utf-8");
 
-// Keep the raw SPA shell as 404.html so unknown routes hydrate cleanly
-// Add noindex to prevent Google from indexing unknown URLs as duplicates
 const notFoundHtml = template
   .replace(
     '<meta name="robots" content="index, follow" />',
