@@ -7,7 +7,7 @@ import {
 } from "@/projects/data";
 import { experiences } from "@/experience/data";
 
-const BASE_URL = "https://fedebello.com";
+const BASE_URL = "https://www.fedebello.com";
 const AUTHOR = {
   "@type": "Person",
   name: "Federico Bello",
