@@ -1,6 +1,33 @@
 import type { ConferenceEntry, Publication } from "@/types/publications";
 
-export const publications: ReadonlyArray<Publication> = [
+const MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+/** Turns a "MMM YYYY" date into a sortable month index (higher = more recent). */
+function dateKey(date: string): number {
+  const [month, year] = date.split(" ");
+  const monthIndex = MONTHS.indexOf(month);
+  return Number(year) * 12 + (monthIndex < 0 ? 0 : monthIndex);
+}
+
+/** Sort by date, most recent first. */
+function byDateDesc<T extends { date: string }>(a: T, b: T): number {
+  return dateKey(b.date) - dateKey(a.date);
+}
+
+const publicationEntries: ReadonlyArray<Publication> = [
   {
     title: "The Lattice-Input Discrete-Time Poisson Channel",
     venue: "IEEE - ISIT",
@@ -26,7 +53,11 @@ export const publications: ReadonlyArray<Publication> = [
   },
 ];
 
-export const conferences: ReadonlyArray<ConferenceEntry> = [
+export const publications: ReadonlyArray<Publication> = [
+  ...publicationEntries,
+].sort(byDateDesc);
+
+const conferenceEntries: ReadonlyArray<ConferenceEntry> = [
   {
     event: "LANET 2025",
     date: "Aug 2025",
@@ -38,3 +69,7 @@ export const conferences: ReadonlyArray<ConferenceEntry> = [
     link: "https://lanet2025.uy/",
   },
 ];
+
+export const conferences: ReadonlyArray<ConferenceEntry> = [
+  ...conferenceEntries,
+].sort(byDateDesc);
