@@ -25,9 +25,8 @@ export function AboutPage(): JSX.Element {
         </div>
         <div className="md:col-span-2 space-y-4 leading-7 text-slate-700 dark:text-slate-200">
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            I'm a <strong>Machine Learning Engineer</strong> based in Paris, where
-            I'm pursuing the{" "}
-            <strong>M.Sc. Mathematics, Vision, Learning (MVA)</strong> at{" "}
+            I'm a <strong>Machine Learning Engineer</strong> doing the{" "}
+            <strong>MVA</strong> at{" "}
             <a
               href="https://www.ens-paris-saclay.fr/"
               target="_blank"
@@ -36,16 +35,8 @@ export function AboutPage(): JSX.Element {
             >
               ENS Paris-Saclay
             </a>{" "}
-            as a <strong>Sophie Germain Excellence Scholar</strong> of the
-            Fondation Mathématique Jacques Hadamard.
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.05 }}
-          >
-            Until September 2026 I was a{" "}
-            <strong>Lead Machine Learning Engineer</strong> at{" "}
+            as a <strong>Sophie Germain Scholar</strong>. Until September 2026 I
+            was a Lead ML Engineer at{" "}
             <a
               href="https://tryolabs.com/"
               target="_blank"
@@ -54,8 +45,7 @@ export function AboutPage(): JSX.Element {
             >
               Tryolabs
             </a>
-            , embedded as a{" "}
-            <strong>Forward Deployed Engineer</strong> with the{" "}
+            , embedded with the{" "}
             <a
               href="https://www.llamaindex.ai/"
               target="_blank"
@@ -64,55 +54,33 @@ export function AboutPage(): JSX.Element {
             >
               LlamaIndex
             </a>{" "}
-            team, where I took AI document-processing systems to production for
-            enterprise clients, led AI system architecture, and mentored
-            engineers. I hold a degree in{" "}
-            <strong>Telecommunications Systems Engineering</strong>{" "}
-            from the{" "}
+            team as a Forward Deployed Engineer.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.05 }}
+          >
+            I studied Telecommunications Engineering at{" "}
             <a
               href="https://www.fing.edu.uy/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 dark:text-blue-400 hover:underline"
             >
-              Faculty of Engineering
-            </a>{" "}
-            of the University of the Republic (UdelaR), where I graduated{" "}
-            <strong>top 3 of my class</strong>. My thesis on anomaly detection
-            with Graph Neural Networks received the{" "}
-            <strong>Best Engineering Project and First Place Thesis Prize</strong>{" "}
-            from Uruguay's National Academy of Engineering.
+              UdelaR
+            </a>
+            , graduating <strong>top 3 of my class</strong> with a prize-winning
+            thesis on anomaly detection with Graph Neural Networks. There I also
+            taught programming and did research on DNA storage.
           </motion.p>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.05 }}
           >
-            I also have <strong>academic experience</strong> as a Teaching Assistant at
-            the UdelaR, where I <strong>taught programming courses</strong> and
-            contributed to <strong>research</strong> in the Information Theory
-            Group, focusing on DNA storage systems.
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.05 }}
-          >
-            My main interests are <strong>machine learning</strong>,{" "}
-            <strong>applied mathematics</strong> with a focus on signal
-            processing, and <strong>programming</strong>. I enjoy building
-            practical, reliable end-to-end ML systems, drawing on my background
-            in signal processing, data modeling, and backend development.
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.05 }}
-          >
-            I speak <strong>Spanish</strong> (native),{" "}
-            <strong>English</strong> (C2 Proficiency, CPE),{" "}
-            <strong>German</strong> (B1, Goethe) and <strong>French</strong> (A2).
+            I enjoy building reliable end-to-end ML systems grounded in applied
+            mathematics. I speak Spanish, English, German and French.
           </motion.p>
 
           <div className="pt-2">
