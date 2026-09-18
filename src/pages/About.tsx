@@ -8,7 +8,7 @@ export function AboutPage(): JSX.Element {
     <div>
       <SectionHeader
         title="About Me"
-        subtitle="Lead ML Engineer at Tryolabs • Forward Deployed Engineer with LlamaIndex • ML & Applied Mathematics"
+        subtitle="Machine Learning Engineer • MVA @ ENS Paris-Saclay • Sophie Germain Scholar"
       />
       <Container className="max-w-5xl pb-16 grid md:grid-cols-3 gap-6">
         <div className="md:col-span-1">
@@ -25,7 +25,26 @@ export function AboutPage(): JSX.Element {
         </div>
         <div className="md:col-span-2 space-y-4 leading-7 text-slate-700 dark:text-slate-200">
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            I currently work as a{" "}
+            I'm a <strong>Machine Learning Engineer</strong> based in Paris, where
+            I'm pursuing the{" "}
+            <strong>M.Sc. Mathematics, Vision, Learning (MVA)</strong> at{" "}
+            <a
+              href="https://www.ens-paris-saclay.fr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              ENS Paris-Saclay
+            </a>{" "}
+            as a <strong>Sophie Germain Excellence Scholar</strong> of the
+            Fondation Mathématique Jacques Hadamard.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.05 }}
+          >
+            Until September 2026 I was a{" "}
             <strong>Lead Machine Learning Engineer</strong> at{" "}
             <a
               href="https://tryolabs.com/"
@@ -45,8 +64,8 @@ export function AboutPage(): JSX.Element {
             >
               LlamaIndex
             </a>{" "}
-            team, where I deliver AI document-processing solutions for major
-            enterprise clients, lead AI system architecture, and mentor
+            team, where I took AI document-processing systems to production for
+            enterprise clients, led AI system architecture, and mentored
             engineers. I hold a degree in{" "}
             <strong>Telecommunications Systems Engineering</strong>{" "}
             from the{" "}
@@ -58,7 +77,11 @@ export function AboutPage(): JSX.Element {
             >
               Faculty of Engineering
             </a>{" "}
-            of the University of the Republic (UdelaR), with a thesis on anomaly detection with Graph Neural Networks.
+            of the University of the Republic (UdelaR), where I graduated{" "}
+            <strong>top 3 of my class</strong>. My thesis on anomaly detection
+            with Graph Neural Networks received the{" "}
+            <strong>Best Engineering Project and First Place Thesis Prize</strong>{" "}
+            from Uruguay's National Academy of Engineering.
           </motion.p>
           <motion.p
             initial={{ opacity: 0 }}
@@ -80,6 +103,16 @@ export function AboutPage(): JSX.Element {
             processing, and <strong>programming</strong>. I enjoy building
             practical, reliable end-to-end ML systems, drawing on my background
             in signal processing, data modeling, and backend development.
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.05 }}
+          >
+            I speak <strong>Spanish</strong> (native),{" "}
+            <strong>English</strong> (C2 Proficiency, CPE),{" "}
+            <strong>German</strong> (B1, Goethe) and <strong>French</strong> (A2).
           </motion.p>
 
           <div className="pt-2">

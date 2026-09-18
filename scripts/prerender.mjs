@@ -12,12 +12,12 @@ const pageMeta = {
   "/": {
     title: "Federico Bello | Portfolio",
     description:
-      "Lead ML Engineer at Tryolabs. Graph Neural Networks, AI systems & applied mathematics. Explore Federico Bello's projects and publications.",
+      "Machine Learning Engineer and MVA student at ENS Paris-Saclay, Sophie Germain Scholar. Graph Neural Networks, AI systems & applied mathematics. Explore Federico Bello's projects and publications.",
   },
   "/experience": {
     title: "Experience | Federico Bello",
     description:
-      "Federico Bello's professional experience as Lead ML Engineer at Tryolabs, including past roles in ML engineering and academic teaching.",
+      "Federico Bello's professional experience, including Lead ML Engineer at Tryolabs, other ML engineering roles, and academic teaching and research.",
   },
   "/projects": {
     title: "Projects | Federico Bello",
