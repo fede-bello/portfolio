@@ -25,8 +25,7 @@ export function AboutPage(): JSX.Element {
         </div>
         <div className="md:col-span-2 space-y-4 leading-7 text-slate-700 dark:text-slate-200">
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            I'm a <strong>Machine Learning Engineer</strong> doing the{" "}
-            <strong>MVA</strong> at{" "}
+            I'm currently doing the <strong>MVA</strong> at{" "}
             <a
               href="https://www.ens-paris-saclay.fr/"
               target="_blank"
@@ -35,8 +34,8 @@ export function AboutPage(): JSX.Element {
             >
               ENS Paris-Saclay
             </a>{" "}
-            as a <strong>Sophie Germain Scholar</strong>. Until September 2026 I
-            was a Lead ML Engineer at{" "}
+            as a <strong>Sophie Germain Scholar</strong>. Before that I worked as a{" "}
+            <strong>Lead Machine Learning Engineer</strong> at{" "}
             <a
               href="https://tryolabs.com/"
               target="_blank"
@@ -45,7 +44,8 @@ export function AboutPage(): JSX.Element {
             >
               Tryolabs
             </a>
-            , embedded with the{" "}
+            , embedded as a{" "}
+            <strong>Forward Deployed Engineer</strong> with the{" "}
             <a
               href="https://www.llamaindex.ai/"
               target="_blank"
@@ -54,33 +54,42 @@ export function AboutPage(): JSX.Element {
             >
               LlamaIndex
             </a>{" "}
-            team as a Forward Deployed Engineer.
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.05 }}
-          >
-            I studied Telecommunications Engineering at{" "}
+            team, where I delivered AI document-processing solutions for major
+            enterprise clients, led AI system architecture, and mentored
+            engineers. I hold a degree in{" "}
+            <strong>Telecommunications Systems Engineering</strong>{" "}
+            from the{" "}
             <a
               href="https://www.fing.edu.uy/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 dark:text-blue-400 hover:underline"
             >
-              UdelaR
-            </a>
-            , graduating <strong>top 3 of my class</strong> with a prize-winning
-            thesis on anomaly detection with Graph Neural Networks. There I also
-            taught programming and did research on DNA storage.
+              Faculty of Engineering
+            </a>{" "}
+            of the University of the Republic (UdelaR), with an award-winning thesis on anomaly detection with Graph Neural Networks.
           </motion.p>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.05 }}
           >
-            I enjoy building reliable end-to-end ML systems grounded in applied
-            mathematics. I speak Spanish, English, German and French.
+            I also have <strong>academic experience</strong> as a Teaching Assistant at
+            the UdelaR, where I <strong>taught programming courses</strong> and
+            contributed to <strong>research</strong> in the Information Theory
+            Group, focusing on DNA storage systems.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.05 }}
+          >
+            My main interests are <strong>machine learning</strong>,{" "}
+            <strong>applied mathematics</strong> with a focus on signal
+            processing, and <strong>programming</strong>. I enjoy building
+            practical, reliable end-to-end ML systems, drawing on my background
+            in signal processing, data modeling, and backend development. I speak
+            Spanish, English, German and French.
           </motion.p>
 
           <div className="pt-2">
