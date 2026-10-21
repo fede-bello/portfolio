@@ -7,6 +7,7 @@ import {
 } from "react-router-dom/server";
 import { AppLayout } from "./layouts/AppLayout";
 import { AboutPage } from "./pages/About";
+import { LocalizedAboutPage } from "./pages/LocalizedAbout";
 import { ExperiencePage } from "./pages/Experience";
 import { ProjectsPage } from "./pages/Projects";
 import { PublicationsPage } from "./pages/Publications";
@@ -18,6 +19,8 @@ const routes = [
     element: <AppLayout />,
     children: [
       { index: true, element: <AboutPage /> },
+      { path: "es", element: <LocalizedAboutPage lang="es" /> },
+      { path: "fr", element: <LocalizedAboutPage lang="fr" /> },
       { path: "experience", element: <ExperiencePage /> },
       { path: "projects", element: <ProjectsPage /> },
       { path: "publications", element: <PublicationsPage /> },

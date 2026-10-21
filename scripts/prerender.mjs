@@ -6,13 +6,34 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const root = resolve(__dirname, "..");
 const BASE_URL = "https://www.fedebello.com";
 
-const routes = ["/", "/experience", "/projects", "/publications", "/contact"];
+const routes = ["/", "/es", "/fr", "/experience", "/projects", "/publications", "/contact"];
+
+const langs = { "/es": "es", "/fr": "fr" };
+const ogLocales = { en: "en_US", es: "es_ES", fr: "fr_FR" };
+const hreflangRoutes = { en: "/", es: "/es", fr: "/fr" };
+const hreflangTags = [
+  ...Object.entries(hreflangRoutes).map(
+    ([lang, path]) =>
+      `<link rel="alternate" hreflang="${lang}" href="${BASE_URL}${path === "/" ? "/" : path}" />`
+  ),
+  `<link rel="alternate" hreflang="x-default" href="${BASE_URL}/" />`,
+].join("\n    ");
 
 const pageMeta = {
   "/": {
-    title: "Federico Bello | Portfolio",
+    title: "Federico Bello (Fede Bello) | Machine Learning Engineer, ENS Paris-Saclay",
     description:
-      "Machine Learning Engineer and MVA student at ENS Paris-Saclay, Sophie Germain Scholar. Graph Neural Networks, AI systems & applied mathematics. Explore Federico Bello's projects and publications.",
+      "Federico Bello (Fede Bello), Machine Learning Engineer and MVA student at ENS Paris-Saclay, Sophie Germain Scholar. Graph Neural Networks, AI systems & applied mathematics. Portfolio, projects and publications.",
+  },
+  "/es": {
+    title: "Federico Bello (Fede Bello) | Ingeniero de Machine Learning, ENS Paris-Saclay",
+    description:
+      "Federico Bello (Fede Bello), ingeniero de Machine Learning uruguayo, estudiante del máster MVA en la ENS Paris-Saclay y becario Sophie Germain. Redes neuronales en grafos, sistemas de IA y matemáticas aplicadas.",
+  },
+  "/fr": {
+    title: "Federico Bello (Fede Bello) | Ingénieur Machine Learning, ENS Paris-Saclay",
+    description:
+      "Federico Bello (Fede Bello), ingénieur Machine Learning, étudiant du master MVA à l'ENS Paris-Saclay et boursier Sophie Germain. Réseaux de neurones sur graphes, systèmes d'IA et mathématiques appliquées.",
   },
   "/experience": {
     title: "Experience | Federico Bello",
@@ -55,7 +76,10 @@ for (const route of routes) {
   const html = await render(`${BASE_URL}${route}`);
   const meta = pageMeta[route];
 
-  const output = template
+  const lang = langs[route] ?? "en";
+  const isLangCluster = route === "/" || route in langs;
+
+  let output = template
     .replace('<div id="root"></div>', `<div id="root">${html}</div>`)
     .replace(/<title>[^<]*<\/title>/, `<title>${meta.title}</title>`)
     .replace(
@@ -86,6 +110,19 @@ for (const route of routes) {
       /(<link rel="canonical" href=")[^"]*(")/,
       `$1${BASE_URL}${route}$2`
     );
+
+  output = output
+    .replace('<html lang="en"', `<html lang="${lang}"`)
+    .replace(
+      '<meta property="og:locale" content="en_US" />',
+      `<meta property="og:locale" content="${ogLocales[lang]}" />`
+    );
+  if (isLangCluster) {
+    output = output.replace(
+      /(<link rel="canonical" href="[^"]*" \/>)/,
+      `$1\n    ${hreflangTags}`
+    );
+  }
 
   const segment = route === "/" ? "" : route.slice(1);
   const outDir = segment
