@@ -17,9 +17,19 @@ interface PageMeta {
 
 const PAGE_META: Record<string, PageMeta> = {
   "/": {
-    title: "Federico Bello | Portfolio",
+    title: "Federico Bello (Fede Bello) | Machine Learning Engineer, ENS Paris-Saclay",
     description:
-      "Machine Learning Engineer and MVA student at ENS Paris-Saclay, Sophie Germain Scholar. Graph Neural Networks, AI systems & applied mathematics. Explore Federico Bello's projects and publications.",
+      "Federico Bello (Fede Bello), Machine Learning Engineer and MVA student at ENS Paris-Saclay, Sophie Germain Scholar. Graph Neural Networks, AI systems & applied mathematics. Portfolio, projects and publications.",
+  },
+  "/es": {
+    title: "Federico Bello (Fede Bello) | Ingeniero de Machine Learning, ENS Paris-Saclay",
+    description:
+      "Federico Bello (Fede Bello), ingeniero de Machine Learning uruguayo, estudiante del máster MVA en la ENS Paris-Saclay y becario Sophie Germain. Redes neuronales en grafos, sistemas de IA y matemáticas aplicadas.",
+  },
+  "/fr": {
+    title: "Federico Bello (Fede Bello) | Ingénieur Machine Learning, ENS Paris-Saclay",
+    description:
+      "Federico Bello (Fede Bello), ingénieur Machine Learning, étudiant du master MVA à l'ENS Paris-Saclay et boursier Sophie Germain. Réseaux de neurones sur graphes, systèmes d'IA et mathématiques appliquées.",
   },
   "/experience": {
     title: "Experience | Federico Bello",
@@ -42,6 +52,8 @@ const PAGE_META: Record<string, PageMeta> = {
   },
 };
 
+const LANGS: Record<string, string> = { "/es": "es", "/fr": "fr" };
+
 function setMeta(name: string, content: string, property = false): void {
   const attr = property ? "property" : "name";
   let el = document.querySelector<HTMLMetaElement>(`meta[${attr}="${name}"]`);
@@ -59,6 +71,7 @@ export function AppLayout(): JSX.Element {
   useEffect(() => {
     const meta = PAGE_META[location.pathname] ?? PAGE_META["/"];
 
+    document.documentElement.lang = LANGS[location.pathname] ?? "en";
     document.title = meta.title;
     setMeta("description", meta.description);
     setMeta("og:title", meta.title, true);
