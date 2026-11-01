@@ -5,8 +5,11 @@ import { Panel } from "@/components/Panel";
 import { Icon } from "@/components/Icon";
 import { AnimatePresence, motion } from "framer-motion";
 import { SocialLinks } from "@/components/SocialLinks";
+import { useI18n } from "@/hooks/useI18n";
 
 export function ContactPage(): JSX.Element {
+  const { t } = useI18n();
+  const c = t.contact;
   const endpoint = import.meta.env.VITE_FORMSUBMIT_ENDPOINT as
     | string
     | undefined;
@@ -62,15 +65,15 @@ export function ContactPage(): JSX.Element {
   function validate(): FieldErrors {
     const next: FieldErrors = {};
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!name.trim()) next.name = "Please enter your name.";
-    if (!email.trim()) next.email = "Please enter your email address.";
+    if (!name.trim()) next.name = c.errors.nameRequired;
+    if (!email.trim()) next.email = c.errors.emailRequired;
     else if (!emailPattern.test(email))
-      next.email = "Enter a valid email address.";
+      next.email = c.errors.emailInvalid;
     const len = message.trim().length;
-    if (!len) next.message = "Please enter a message.";
-    else if (len < 10) next.message = "Message must be at least 10 characters.";
+    if (!len) next.message = c.errors.messageRequired;
+    else if (len < 10) next.message = c.errors.messageTooShort;
     else if (len > 5000)
-      next.message = "Message cannot exceed 5000 characters.";
+      next.message = c.errors.messageTooLong;
     return next;
   }
 
@@ -87,7 +90,7 @@ export function ContactPage(): JSX.Element {
       // Honeypot filled: silently ignore
       setStatus({
         type: "success",
-        text: "Thanks! Your message has been received.",
+        text: c.status.received,
       });
       setName("");
       setEmail("");
@@ -98,7 +101,7 @@ export function ContactPage(): JSX.Element {
     if (!endpoint) {
       setStatus({
         type: "error",
-        text: "Form service is not configured. Please try again later.",
+        text: c.status.notConfigured,
       });
       return;
     }
@@ -138,7 +141,7 @@ export function ContactPage(): JSX.Element {
 
       setStatus({
         type: "success",
-        text: "Thanks! I received your message and will reply in 1–2 business days.",
+        text: c.status.success,
       });
       setName("");
       setEmail("");
@@ -149,7 +152,7 @@ export function ContactPage(): JSX.Element {
     } catch {
       setStatus({
         type: "error",
-        text: "Something went wrong. Please check your connection and try again.",
+        text: c.status.failure,
       });
     } finally {
       setIsSubmitting(false);
@@ -160,7 +163,7 @@ export function ContactPage(): JSX.Element {
     if (captchaExpected == null) return;
     const answer = Number(captchaAnswer.trim());
     if (Number.isNaN(answer) || answer !== captchaExpected) {
-      setCaptchaError("Incorrect answer. Please try again.");
+      setCaptchaError(c.captchaError);
       setTimeout(() => captchaInputRef.current?.focus(), 0);
       return;
     }
@@ -172,7 +175,7 @@ export function ContactPage(): JSX.Element {
 
   return (
     <div>
-      <SectionHeader title="Contact Me" />
+      <SectionHeader title={c.title} />
       <Container className="max-w-5xl pb-16">
         <div className="grid md:grid-cols-3 gap-12">
           <div className="md:col-span-2">
@@ -194,11 +197,10 @@ export function ContactPage(): JSX.Element {
               </div>
               <div className="flex flex-col items-center gap-2">
                 <h2 className="text-xl font-semibold">
-                  Thank you for contacting me
+                  {c.thanksTitle}
                 </h2>
                 <p className="text-slate-600 dark:text-slate-300">
-                  I received your message and will reply within 1–2 business
-                  days.
+                  {c.thanksBody}
                 </p>
               </div>
             </motion.div>
@@ -215,9 +217,9 @@ export function ContactPage(): JSX.Element {
                 <div className="w-16 h-16 rounded-full border-4 border-blue-200 dark:border-blue-800 border-t-blue-600 dark:border-t-blue-400 animate-spin" />
               </div>
               <div className="flex flex-col items-center gap-2">
-                <h2 className="text-xl font-semibold">Sending…</h2>
+                <h2 className="text-xl font-semibold">{c.sending}</h2>
                 <p className="text-slate-600 dark:text-slate-300">
-                  Please wait
+                  {c.pleaseWait}
                 </p>
               </div>
             </motion.div>
@@ -251,12 +253,12 @@ export function ContactPage(): JSX.Element {
                 />
                 <div className="grid gap-2">
                   <label htmlFor="name" className="text-sm font-medium">
-                    Name
+                    {c.name}
                   </label>
                   <input
                     id="name"
                     name="name"
-                    placeholder="Your full name"
+                    placeholder={c.namePlaceholder}
                     className="h-10 rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 outline-none focus:ring-2 focus:ring-slate-400/60"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -276,13 +278,13 @@ export function ContactPage(): JSX.Element {
                 </div>
                 <div className="grid gap-2">
                   <label htmlFor="email" className="text-sm font-medium">
-                    Email
+                    {c.email}
                   </label>
                   <input
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="you@example.com"
+                    placeholder={c.emailPlaceholder}
                     className="h-10 rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 outline-none focus:ring-2 focus:ring-slate-400/60"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -302,13 +304,13 @@ export function ContactPage(): JSX.Element {
                 </div>
                 <div className="grid gap-2">
                   <label htmlFor="message" className="text-sm font-medium">
-                    Message
+                    {c.message}
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     rows={5}
-                    placeholder="What can I help you with?"
+                    placeholder={c.messagePlaceholder}
                     className="rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 p-3 outline-none focus:ring-2 focus:ring-slate-400/60"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
@@ -334,12 +336,12 @@ export function ContactPage(): JSX.Element {
                   disabled={isSubmitting || onCooldown || isSent}
                 >
                   {isSent
-                    ? "Sent"
+                    ? c.sent
                     : isSubmitting
-                    ? "Sending…"
+                    ? c.sending
                     : onCooldown
-                    ? "Please wait…"
-                    : "Send"}
+                    ? c.wait
+                    : c.send}
                 </button>
               </Panel>
             </motion.form>
@@ -355,14 +357,14 @@ export function ContactPage(): JSX.Element {
               className="relative z-10 w-full max-w-sm rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-lg"
             >
               <h2 id="captcha-title" className="text-base font-semibold mb-2">
-                Quick check
+                {c.captchaTitle}
               </h2>
               <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
-                Please solve: {captchaQuestion}
+                {c.captchaPrompt} {captchaQuestion}
               </p>
               <div className="grid gap-2 mb-4">
                 <label htmlFor="captcha-input" className="text-sm font-medium">
-                  Your answer
+                  {c.captchaAnswer}
                 </label>
                 <input
                   id="captcha-input"
@@ -390,14 +392,14 @@ export function ContactPage(): JSX.Element {
                   className="h-9 px-3 rounded-md border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800"
                   onClick={() => setIsCaptchaOpen(false)}
                 >
-                  Cancel
+                  {c.cancel}
                 </button>
                 <button
                   type="button"
                   className="h-9 px-3 rounded-md bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:opacity-90"
                   onClick={onConfirmCaptcha}
                 >
-                  Confirm
+                  {c.confirm}
                 </button>
               </div>
             </div>
@@ -415,14 +417,14 @@ export function ContactPage(): JSX.Element {
       <div className="space-y-8">
         <section>
           <h2 className="text-sm font-semibold tracking-wide text-slate-500 dark:text-slate-400 mb-4">
-            Other ways to connect
+            {c.otherWays}
           </h2>
           <SocialLinks className="!grid-cols-1" />
         </section>
 
         <section>
           <h2 className="text-sm font-semibold tracking-wide text-slate-500 dark:text-slate-400 mb-4">
-            Email
+            {c.email}
           </h2>
           <a
             href="mailto:fedebello13@gmail.com"

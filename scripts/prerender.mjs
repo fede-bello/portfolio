@@ -6,56 +6,27 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const root = resolve(__dirname, "..");
 const BASE_URL = "https://www.fedebello.com";
 
-const routes = ["/", "/es", "/fr", "/experience", "/projects", "/publications", "/contact"];
+// Routes, meta and language helpers come from the app itself (src/i18n), via the SSR bundle.
+const {
+  render,
+  getPageMeta,
+  getLangFromPath,
+  localizePath,
+  stripLang,
+  LANGS,
+  LOCALIZED_ROUTES,
+  OG_LOCALES,
+} = await import(resolve(root, "dist-server/entry-server.js"));
 
-const langs = { "/es": "es", "/fr": "fr" };
-const ogLocales = { en: "en_US", es: "es_ES", fr: "fr_FR" };
-const hreflangRoutes = { en: "/", es: "/es", fr: "/fr" };
-const hreflangTags = [
-  ...Object.entries(hreflangRoutes).map(
-    ([lang, path]) =>
-      `<link rel="alternate" hreflang="${lang}" href="${BASE_URL}${path === "/" ? "/" : path}" />`
-  ),
-  `<link rel="alternate" hreflang="x-default" href="${BASE_URL}/" />`,
-].join("\n    ");
+const absoluteUrl = (path) => (path === "/" ? `${BASE_URL}/` : `${BASE_URL}${path}`);
 
-const pageMeta = {
-  "/": {
-    title: "Federico Bello (Fede Bello) | Machine Learning Engineer, ENS Paris-Saclay",
-    description:
-      "Federico Bello (Fede Bello), Machine Learning Engineer and MVA student at ENS Paris-Saclay, Sophie Germain Scholar. Graph Neural Networks, AI systems & applied mathematics. Portfolio, projects and publications.",
-  },
-  "/es": {
-    title: "Federico Bello (Fede Bello) | Ingeniero de Machine Learning, ENS Paris-Saclay",
-    description:
-      "Federico Bello (Fede Bello), ingeniero de Machine Learning uruguayo, estudiante del máster MVA en la ENS Paris-Saclay y becario Sophie Germain. Redes neuronales en grafos, sistemas de IA y matemáticas aplicadas.",
-  },
-  "/fr": {
-    title: "Federico Bello (Fede Bello) | Ingénieur Machine Learning, ENS Paris-Saclay",
-    description:
-      "Federico Bello (Fede Bello), ingénieur Machine Learning, étudiant du master MVA à l'ENS Paris-Saclay et boursier Sophie Germain. Réseaux de neurones sur graphes, systèmes d'IA et mathématiques appliquées.",
-  },
-  "/experience": {
-    title: "Experience | Federico Bello",
-    description:
-      "Federico Bello's professional experience, including Lead ML Engineer at Tryolabs, other ML engineering roles, and academic teaching and research.",
-  },
-  "/projects": {
-    title: "Projects | Federico Bello",
-    description:
-      "ML and software engineering projects by Federico Bello — end-to-end AI systems, signal processing, and open-source work.",
-  },
-  "/publications": {
-    title: "Publications | Federico Bello",
-    description:
-      "Research publications and conference talks by Federico Bello, covering Graph Neural Networks, anomaly detection, and DNA storage.",
-  },
-  "/contact": {
-    title: "Contact | Federico Bello",
-    description:
-      "Get in touch with Federico Bello — open to collaborations, research opportunities, and interesting ML problems.",
-  },
-};
+/** [hreflang, url] pairs for every language version of a route, plus x-default (English). */
+function alternatesFor(route) {
+  return [
+    ...LANGS.map((lang) => [lang, absoluteUrl(localizePath(route, lang))]),
+    ["x-default", absoluteUrl(localizePath(route, "en"))],
+  ];
+}
 
 const template = readFileSync(resolve(root, "dist/index.html"), "utf-8");
 
@@ -68,70 +39,71 @@ const notFoundHtml = template
 writeFileSync(resolve(root, "dist/404.html"), notFoundHtml);
 console.log("Written → dist/404.html (SPA shell, noindex)");
 
-const { render } = await import(resolve(root, "dist-server/entry-server.js"));
-
-for (const route of routes) {
+for (const route of LOCALIZED_ROUTES) {
   process.stdout.write(`Pre-rendering ${route} ...`);
 
   const html = await render(`${BASE_URL}${route}`);
-  const meta = pageMeta[route];
+  const meta = getPageMeta(route);
+  const lang = getLangFromPath(route);
+  const url = absoluteUrl(route);
+  const hreflangTags = alternatesFor(route)
+    .map(([hreflang, href]) => `<link rel="alternate" hreflang="${hreflang}" href="${href}" />`)
+    .join("\n    ");
 
-  const lang = langs[route] ?? "en";
-  const isLangCluster = route === "/" || route in langs;
-
-  let output = template
+  const output = template
     .replace('<div id="root"></div>', `<div id="root">${html}</div>`)
     .replace(/<title>[^<]*<\/title>/, `<title>${meta.title}</title>`)
-    .replace(
-      /(<meta name="description" content=")[^"]*(")/,
-      `$1${meta.description}$2`
-    )
-    .replace(
-      /(<meta property="og:title" content=")[^"]*(")/,
-      `$1${meta.title}$2`
-    )
-    .replace(
-      /(<meta property="og:description" content=")[^"]*(")/,
-      `$1${meta.description}$2`
-    )
-    .replace(
-      /(<meta property="og:url" content=")[^"]*(")/,
-      `$1${BASE_URL}${route}$2`
-    )
-    .replace(
-      /(<meta name="twitter:title" content=")[^"]*(")/,
-      `$1${meta.title}$2`
-    )
-    .replace(
-      /(<meta name="twitter:description" content=")[^"]*(")/,
-      `$1${meta.description}$2`
-    )
-    .replace(
-      /(<link rel="canonical" href=")[^"]*(")/,
-      `$1${BASE_URL}${route}$2`
-    );
-
-  output = output
+    .replace(/(<meta name="description" content=")[^"]*(")/, `$1${meta.description}$2`)
+    .replace(/(<meta property="og:title" content=")[^"]*(")/, `$1${meta.title}$2`)
+    .replace(/(<meta property="og:description" content=")[^"]*(")/, `$1${meta.description}$2`)
+    .replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${url}$2`)
+    .replace(/(<meta name="twitter:title" content=")[^"]*(")/, `$1${meta.title}$2`)
+    .replace(/(<meta name="twitter:description" content=")[^"]*(")/, `$1${meta.description}$2`)
+    .replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${url}$2`)
+    .replace(/(<link rel="canonical" href="[^"]*" \/>)/, `$1\n    ${hreflangTags}`)
     .replace('<html lang="en"', `<html lang="${lang}"`)
     .replace(
       '<meta property="og:locale" content="en_US" />',
-      `<meta property="og:locale" content="${ogLocales[lang]}" />`
+      `<meta property="og:locale" content="${OG_LOCALES[lang]}" />`
     );
-  if (isLangCluster) {
-    output = output.replace(
-      /(<link rel="canonical" href="[^"]*" \/>)/,
-      `$1\n    ${hreflangTags}`
-    );
-  }
 
   const segment = route === "/" ? "" : route.slice(1);
-  const outDir = segment
-    ? resolve(root, "dist", segment)
-    : resolve(root, "dist");
+  const outDir = segment ? resolve(root, "dist", segment) : resolve(root, "dist");
   mkdirSync(outDir, { recursive: true });
   writeFileSync(resolve(outDir, "index.html"), output);
 
   console.log(` done → dist/${segment ? segment + "/" : ""}index.html`);
 }
+
+// Sitemap: every localized page, each listing its language alternates.
+const lastmod = new Date().toISOString().slice(0, 10);
+const priorities = { "/": "1.0", "/contact": "0.5" };
+const sitemapEntries = LOCALIZED_ROUTES.map((route) => {
+  const page = stripLang(route);
+  const isHome = page === "/";
+  const priority = priorities[page] ?? "0.8";
+  const links = alternatesFor(route)
+    .map(
+      ([hreflang, href]) =>
+        `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${href}"/>`
+    )
+    .join("\n");
+  return [
+    "  <url>",
+    `    <loc>${absoluteUrl(route)}</loc>`,
+    `    <lastmod>${lastmod}</lastmod>`,
+    `    <changefreq>${page === "/contact" ? "yearly" : "monthly"}</changefreq>`,
+    `    <priority>${isHome && getLangFromPath(route) !== "en" ? "0.9" : priority}</priority>`,
+    links,
+    "  </url>",
+  ].join("\n");
+});
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${sitemapEntries.join("\n")}
+</urlset>
+`;
+writeFileSync(resolve(root, "dist/sitemap.xml"), sitemap);
+console.log(`Written → dist/sitemap.xml (${LOCALIZED_ROUTES.length} URLs)`);
 
 console.log("\nPre-rendering complete.");

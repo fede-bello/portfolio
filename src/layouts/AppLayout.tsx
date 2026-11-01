@@ -7,52 +7,17 @@ import { PageTransition } from "@/components/PageTransition";
 import { RouteProgress } from "@/components/RouteProgress";
 import { Analytics } from "@vercel/analytics/react";
 import { getStructuredData } from "@/seo/structured-data";
+import {
+  getLangFromPath,
+  LANGS,
+  localizePath,
+  OG_LOCALES,
+  PAGE_PATHS,
+  stripLang,
+} from "@/i18n/config";
+import { getPageMeta } from "@/i18n/meta";
 
 const BASE_URL = "https://www.fedebello.com";
-
-interface PageMeta {
-  title: string;
-  description: string;
-}
-
-const PAGE_META: Record<string, PageMeta> = {
-  "/": {
-    title: "Federico Bello (Fede Bello) | Machine Learning Engineer, ENS Paris-Saclay",
-    description:
-      "Federico Bello (Fede Bello), Machine Learning Engineer and MVA student at ENS Paris-Saclay, Sophie Germain Scholar. Graph Neural Networks, AI systems & applied mathematics. Portfolio, projects and publications.",
-  },
-  "/es": {
-    title: "Federico Bello (Fede Bello) | Ingeniero de Machine Learning, ENS Paris-Saclay",
-    description:
-      "Federico Bello (Fede Bello), ingeniero de Machine Learning uruguayo, estudiante del máster MVA en la ENS Paris-Saclay y becario Sophie Germain. Redes neuronales en grafos, sistemas de IA y matemáticas aplicadas.",
-  },
-  "/fr": {
-    title: "Federico Bello (Fede Bello) | Ingénieur Machine Learning, ENS Paris-Saclay",
-    description:
-      "Federico Bello (Fede Bello), ingénieur Machine Learning, étudiant du master MVA à l'ENS Paris-Saclay et boursier Sophie Germain. Réseaux de neurones sur graphes, systèmes d'IA et mathématiques appliquées.",
-  },
-  "/experience": {
-    title: "Experience | Federico Bello",
-    description:
-      "Federico Bello's professional experience, including Lead ML Engineer at Tryolabs, other ML engineering roles, and academic teaching and research.",
-  },
-  "/projects": {
-    title: "Projects | Federico Bello",
-    description:
-      "ML and software engineering projects by Federico Bello — end-to-end AI systems, signal processing, and open-source work.",
-  },
-  "/publications": {
-    title: "Publications | Federico Bello",
-    description:
-      "Research publications and conference talks by Federico Bello, covering Graph Neural Networks, anomaly detection, and DNA storage.",
-  },
-  "/contact": {
-    title: "Contact | Federico Bello",
-    description: "Get in touch with Federico Bello — open to collaborations, research opportunities, and interesting ML problems.",
-  },
-};
-
-const LANGS: Record<string, string> = { "/es": "es", "/fr": "fr" };
 
 function setMeta(name: string, content: string, property = false): void {
   const attr = property ? "property" : "name";
@@ -69,9 +34,11 @@ export function AppLayout(): JSX.Element {
   const location = useLocation();
 
   useEffect(() => {
-    const meta = PAGE_META[location.pathname] ?? PAGE_META["/"];
+    const meta = getPageMeta(location.pathname);
+    const lang = getLangFromPath(location.pathname);
 
-    document.documentElement.lang = LANGS[location.pathname] ?? "en";
+    document.documentElement.lang = lang;
+    setMeta("og:locale", OG_LOCALES[lang], true);
     document.title = meta.title;
     setMeta("description", meta.description);
     setMeta("og:title", meta.title, true);
@@ -87,6 +54,21 @@ export function AppLayout(): JSX.Element {
       document.head.appendChild(canonical);
     }
     canonical.href = location.pathname === "/" ? `${BASE_URL}/` : `${BASE_URL}${location.pathname}`;
+
+    // Keep hreflang alternates in sync on client-side navigation (prerender emits the initial set).
+    document.querySelectorAll("link[rel='alternate'][hreflang]").forEach((el) => el.remove());
+    const isKnownPage = PAGE_PATHS.some((p) => p === stripLang(location.pathname));
+    const alternates: Array<[string, string]> = !isKnownPage ? [] : [
+      ...LANGS.map((l): [string, string] => [l, localizePath(location.pathname, l)]),
+      ["x-default", localizePath(location.pathname, "en")],
+    ];
+    alternates.forEach(([hreflang, path]) => {
+      const link = document.createElement("link");
+      link.rel = "alternate";
+      link.hreflang = hreflang;
+      link.href = path === "/" ? `${BASE_URL}/` : `${BASE_URL}${path}`;
+      canonical?.after(link);
+    });
 
     document.querySelectorAll("script[data-dynamic-schema]").forEach((el) => el.remove());
     getStructuredData(location.pathname).forEach((schema, i) => {

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Icon } from "@/components/Icon";
+import { useI18n } from "@/hooks/useI18n";
 
 type Props = {
   open: boolean;
@@ -16,6 +17,7 @@ export function PdfViewerModal({
 }: Props): JSX.Element | null {
   const dialogRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const { t } = useI18n();
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
@@ -61,7 +63,7 @@ export function PdfViewerModal({
     <div
       role="dialog"
       aria-modal="true"
-      aria-label={`PDF Viewer: ${title}`}
+      aria-label={`${t.pdf.viewer}: ${title}`}
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       onClick={onClose}
     >
@@ -86,14 +88,14 @@ export function PdfViewerModal({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-sm px-2 py-1 rounded-md border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900"
             >
-              <Icon name="arrow-up-right" className="size-4" /> Open
+              <Icon name="arrow-up-right" className="size-4" /> {t.pdf.open}
             </a>
             <a
               href={src}
               download
               className="inline-flex items-center gap-1 text-sm px-2 py-1 rounded-md border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900"
             >
-              <Icon name="download" className="size-4" /> Download
+              <Icon name="download" className="size-4" /> {t.pdf.download}
             </a>
             <button
               ref={closeButtonRef}
@@ -101,7 +103,7 @@ export function PdfViewerModal({
               onClick={onClose}
             >
               <Icon name="close" className="size-4" />
-              Close
+              {t.pdf.close}
             </button>
           </div>
         </header>

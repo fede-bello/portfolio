@@ -1,11 +1,14 @@
-import { publications, conferences } from "@/publications/data";
+import { getConferences, getPublications } from "@/publications/data";
+import { getProjects } from "@/projects/data";
+import { getExperiences } from "@/experience/data";
 import {
-  personalProjects,
-  freelanceProjects,
-  universityProjects,
-  ventureProjects,
-} from "@/projects/data";
-import { experiences } from "@/experience/data";
+  getLangFromPath,
+  localizePath,
+  stripLang,
+  type Lang,
+  type PagePath,
+} from "@/i18n/config";
+import { UI } from "@/i18n/ui";
 
 const BASE_URL = "https://www.fedebello.com";
 const AUTHOR = {
@@ -14,26 +17,32 @@ const AUTHOR = {
   url: BASE_URL,
 };
 
-function breadcrumb(
-  ...crumbs: Array<{ name: string; path: string }>
-): object {
+const HOME_LABEL: Record<Lang, string> = { en: "Home", es: "Inicio", fr: "Accueil" };
+
+function url(path: string, lang: Lang): string {
+  const localized = localizePath(path, lang);
+  return localized === "/" ? `${BASE_URL}/` : `${BASE_URL}${localized}`;
+}
+
+function breadcrumb(lang: Lang, path: PagePath): object {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    inLanguage: lang,
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
-      ...crumbs.map(({ name, path }, i) => ({
+      { "@type": "ListItem", position: 1, name: HOME_LABEL[lang], item: url("/", lang) },
+      {
         "@type": "ListItem",
-        position: i + 2,
-        name,
-        item: `${BASE_URL}${path}`,
-      })),
+        position: 2,
+        name: UI[lang].nav[path],
+        item: url(path, lang),
+      },
     ],
   };
 }
 
-function publicationsSchema(): object[] {
-  const articles = publications.map((pub, i) => ({
+function publicationsSchema(lang: Lang): object[] {
+  const articles = getPublications(lang).map((pub, i) => ({
     "@type": "ListItem",
     position: i + 1,
     item: {
@@ -50,7 +59,7 @@ function publicationsSchema(): object[] {
     },
   }));
 
-  const events = conferences.map((conf) => ({
+  const events = getConferences(lang).map((conf) => ({
     "@context": "https://schema.org",
     "@type": "Event",
     name: conf.talkTitle ?? conf.event,
@@ -62,31 +71,29 @@ function publicationsSchema(): object[] {
   }));
 
   return [
-    breadcrumb({ name: "Publications", path: "/publications" }),
+    breadcrumb(lang, "/publications"),
     {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      name: "Publications by Federico Bello",
+      inLanguage: lang,
+      name: `${UI[lang].publications.title} · Federico Bello`,
       itemListElement: articles,
     },
     ...events,
   ];
 }
 
-function projectsSchema(): object[] {
-  const allProjects = [
-    ...ventureProjects,
-    ...freelanceProjects,
-    ...personalProjects,
-    ...universityProjects,
-  ];
+function projectsSchema(lang: Lang): object[] {
+  const { ventures, freelance, personal, university } = getProjects(lang);
+  const allProjects = [...ventures, ...freelance, ...personal, ...university];
 
   return [
-    breadcrumb({ name: "Projects", path: "/projects" }),
+    breadcrumb(lang, "/projects"),
     {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      name: "Projects by Federico Bello",
+      inLanguage: lang,
+      name: `${UI[lang].projects.title} · Federico Bello`,
       itemListElement: allProjects.map((proj, i) => ({
         "@type": "ListItem",
         position: i + 1,
@@ -104,15 +111,15 @@ function projectsSchema(): object[] {
   ];
 }
 
-function experienceSchema(): object[] {
+function experienceSchema(lang: Lang): object[] {
   return [
-    breadcrumb({ name: "Experience", path: "/experience" }),
+    breadcrumb(lang, "/experience"),
     {
       "@context": "https://schema.org",
       "@type": "Person",
       name: "Federico Bello",
       url: BASE_URL,
-      hasOccupation: experiences.map((exp) => ({
+      hasOccupation: getExperiences(lang).map((exp) => ({
         "@type": "Occupation",
         name: exp.role,
         occupationLocation: { "@type": "City", name: exp.location },
@@ -126,15 +133,16 @@ function experienceSchema(): object[] {
 }
 
 export function getStructuredData(pathname: string): object[] {
-  switch (pathname) {
+  const lang = getLangFromPath(pathname);
+  switch (stripLang(pathname)) {
     case "/publications":
-      return publicationsSchema();
+      return publicationsSchema(lang);
     case "/projects":
-      return projectsSchema();
+      return projectsSchema(lang);
     case "/experience":
-      return experienceSchema();
+      return experienceSchema(lang);
     case "/contact":
-      return [breadcrumb({ name: "Contact", path: "/contact" })];
+      return [breadcrumb(lang, "/contact")];
     default:
       return [];
   }

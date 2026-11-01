@@ -3,12 +3,14 @@ import { LeftRailMeta } from "@/components/LeftRailMeta";
 import { TechBadge } from "@/components/TechBadge";
 import type { Experience } from "@/types/experience";
 import { Icon } from "@/components/Icon";
+import { useI18n } from "@/hooks/useI18n";
 
 type Props = {
   exp: Experience;
 };
 
 export function ExperienceCard({ exp }: Props): JSX.Element {
+  const { t } = useI18n();
   return (
     <Panel>
       <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4">
@@ -31,8 +33,8 @@ export function ExperienceCard({ exp }: Props): JSX.Element {
                 className="inline-flex items-center gap-1 text-sm text-sky-600 hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300"
               >
                 {exp.orgKind === "university"
-                  ? "Visit Institute"
-                  : "Visit Company"}
+                  ? t.experience.visitInstitute
+                  : t.experience.visitCompany}
                 <Icon name="external" className="size-4" />
               </a>
             ) : null}
@@ -58,7 +60,7 @@ export function ExperienceCard({ exp }: Props): JSX.Element {
           {exp.summary && exp.summary.length > 0 ? (
             <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-800">
               <div className="text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                Key responsibilities
+                {t.experience.responsibilities}
               </div>
               <ul className="mt-2 space-y-2 list-disc list-inside text-slate-700 dark:text-slate-200 [&_a]:text-sky-700 dark:[&_a]:text-sky-300 [&_a]:underline [&_a]:underline-offset-2">
                 {exp.summary.map((item) => (
@@ -75,7 +77,7 @@ export function ExperienceCard({ exp }: Props): JSX.Element {
           {exp.stack && exp.stack.length > 0 ? (
             <div className="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800">
               <div className="text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                Tech
+                {t.experience.tech}
               </div>
               <div className="mt-2 overflow-x-auto md:overflow-visible">
                 <div className="flex md:flex-wrap flex-nowrap gap-2">

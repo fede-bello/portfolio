@@ -6,6 +6,7 @@ import { TechBadge } from "@/components/TechBadge";
 import { PdfList } from "@/components/PdfList";
 import { PdfViewerModal } from "@/components/PdfViewerModal";
 import type { Project, ProjectAttachment } from "@/types/projects";
+import { useI18n } from "@/hooks/useI18n";
 
 type Props = {
   project: Project;
@@ -30,6 +31,7 @@ export function ProjectCard({
   };
   const [pdf, setPdf] = useState<ProjectAttachment | null>(null);
   const reduce = useReducedMotion();
+  const { t } = useI18n();
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   const timestamp = useMemo(() => project.timestamp, [project.timestamp]);
@@ -166,7 +168,7 @@ export function ProjectCard({
                               rel="noopener noreferrer"
                               className="inline-flex items-center gap-1 text-sm font-medium text-sky-700 dark:text-sky-400 hover:underline"
                             >
-                              Visit site{" "}
+                              {t.projects.visitSite}{" "}
                               <Icon name="arrow-up-right" className="size-4" />
                             </a>
                           ) : null}
@@ -177,7 +179,7 @@ export function ProjectCard({
                               rel="noopener noreferrer"
                               className="inline-flex items-center gap-1 text-sm font-medium text-sky-700 dark:text-sky-400 hover:underline"
                             >
-                              View repo{" "}
+                              {t.projects.viewRepo}{" "}
                               <Icon name="arrow-up-right" className="size-4" />
                             </a>
                           ) : null}

@@ -1,17 +1,20 @@
 import { Link } from "react-router-dom";
+import { useI18n } from "@/hooks/useI18n";
 
-export function NotFound() {
+export function NotFound(): JSX.Element {
+  const { t, to } = useI18n();
+
   return (
     <div className="container max-w-3xl py-24 text-center">
-      <h1 className="text-3xl font-bold">Page not found</h1>
+      <h1 className="text-3xl font-bold">{t.notFound.title}</h1>
       <p className="mt-2 text-slate-600 dark:text-slate-300">
-        We couldn't find what you were looking for.
+        {t.notFound.body}
       </p>
       <Link
-        to="/"
+        to={to("/")}
         className="inline-flex mt-6 h-10 items-center justify-center rounded-md bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 font-medium hover:opacity-90"
       >
-        Back to Home
+        {t.notFound.back}
       </Link>
     </div>
   );

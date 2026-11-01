@@ -5,29 +5,11 @@ import {
   createStaticRouter,
   StaticRouterProvider,
 } from "react-router-dom/server";
-import { AppLayout } from "./layouts/AppLayout";
-import { AboutPage } from "./pages/About";
-import { LocalizedAboutPage } from "./pages/LocalizedAbout";
-import { ExperiencePage } from "./pages/Experience";
-import { ProjectsPage } from "./pages/Projects";
-import { PublicationsPage } from "./pages/Publications";
-import { ContactPage } from "./pages/Contact";
+import { routes } from "./routes";
 
-const routes = [
-  {
-    path: "/",
-    element: <AppLayout />,
-    children: [
-      { index: true, element: <AboutPage /> },
-      { path: "es", element: <LocalizedAboutPage lang="es" /> },
-      { path: "fr", element: <LocalizedAboutPage lang="fr" /> },
-      { path: "experience", element: <ExperiencePage /> },
-      { path: "projects", element: <ProjectsPage /> },
-      { path: "publications", element: <PublicationsPage /> },
-      { path: "contact", element: <ContactPage /> },
-    ],
-  },
-];
+// Re-exported so scripts/prerender.mjs shares the same routes, meta and language config.
+export { getPageMeta, LOCALIZED_ROUTES } from "./i18n/meta";
+export { getLangFromPath, localizePath, stripLang, LANGS, OG_LOCALES } from "./i18n/config";
 
 export async function render(url: string): Promise<string> {
   const handler = createStaticHandler(routes);

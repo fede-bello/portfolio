@@ -29,9 +29,12 @@ This is a personal portfolio website built with a modern React stack. It is a st
 - `src/hooks/`: **Business logic**. Custom hooks (e.g., `useTheme`) to keep components clean.
 - `src/types/`: Shared TypeScript interfaces. Separate by domain (e.g., `projects.ts`, `experience.ts`).
 - `src/data/` (or via feature folders like `src/experience/data.ts`): **Static Content**. All portfolio data resides here.
+- `src/i18n/`: **Internationalization**. Language config and URL helpers (`config.ts`), UI strings (`ui.ts`), page meta (`meta.ts`), date formatting (`dates.ts`).
 - `src/styles/`: Global styles (`globals.css`) and Tailwind setup.
 
 ### Key Architectural Patterns
+
+- **i18n (EN/ES/FR)**: The language lives in the URL: English at the root (`/projects`), Spanish and French under a prefix (`/es/projects`, `/fr/projects`). Routes are defined once in `src/routes.tsx` and shared by the browser router and the SSR prerender. Components get `{ lang, t, to }` from `useI18n()`; always build internal links with `to(path)` so the language is kept. UI text goes in `src/i18n/ui.ts` (all three languages); translatable content in `data.ts` files uses `Localized` fields and is read through `getX(lang)` getters. Page titles/descriptions live in `src/i18n/meta.ts`, which `scripts/prerender.mjs` also uses to generate every page, hreflang tags and `sitemap.xml`.
 
 - **Feature-based Data**: Data is often co-located or organized by feature (e.g., `src/experience/data.ts`).
 - **Type Centralization**: Types are centralized in `src/types/` for reuse across components and data files.
