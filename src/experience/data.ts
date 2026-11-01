@@ -18,6 +18,36 @@ const nti = (label: string): string =>
 const entries: ReadonlyArray<ExperienceEntry> = [
   {
     role: {
+      en: "ML Engineer",
+      es: "ML Engineer",
+      fr: "ML Engineer",
+    },
+    company: "binbash",
+    companyUrl: "https://binbash.co/",
+    orgKind: "company",
+    period: "Sep 2026 - Present",
+    location: "Remote, United States",
+    summary: {
+      en: [
+        "Build <strong>agentic platforms on AWS</strong> (Bedrock, AgentCore) together with client teams, with infrastructure as code.",
+        "Choose models using <strong>real production data</strong>, matching quality at a fraction of the cost.",
+        "Work with client engineers on cost, latency and reliability trade-offs, helping them get to production.",
+      ],
+      es: [
+        "Construyo <strong>plataformas agénticas en AWS</strong> (Bedrock, AgentCore) junto a los equipos de los clientes, con infraestructura como código.",
+        "Elijo modelos a partir de <strong>datos reales de producción</strong>, igualando la calidad a una fracción del costo.",
+        "Trabajo con los ingenieros de los clientes en los compromisos entre costo, latencia y confiabilidad, ayudándolos a llegar a producción.",
+      ],
+      fr: [
+        "Je construis des <strong>plateformes agentiques sur AWS</strong> (Bedrock, AgentCore) avec les équipes des clients, avec de l'infrastructure as code.",
+        "Je choisis les modèles à partir de <strong>données réelles de production</strong>, pour une qualité équivalente à une fraction du coût.",
+        "Je travaille avec les ingénieurs des clients sur les arbitrages entre coût, latence et fiabilité, pour les aider à atteindre la production.",
+      ],
+    },
+    stack: ["Bedrock", "AgentCore", "Claude", "GPT", "Python", "Terraform"],
+  },
+  {
+    role: {
       en: "Lead Machine Learning Engineer",
       es: "Lead Machine Learning Engineer",
       fr: "Lead Machine Learning Engineer",
@@ -45,36 +75,6 @@ const entries: ReadonlyArray<ExperienceEntry> = [
       ],
     },
     stack: ["LlamaIndex", "LlamaCloud", "MCP", "FastAPI", "Python", "GCP", "AWS"],
-  },
-  {
-    role: {
-      en: "Co-founder & AI Specialist",
-      es: "Cofundador y especialista en IA",
-      fr: "Cofondateur et spécialiste IA",
-    },
-    company: "The Hawk Eye Football",
-    companyUrl: "https://thehawkeyefootball.com/",
-    orgKind: "company",
-    period: "2024 - Present",
-    location: "Montevideo, Uruguay",
-    summary: {
-      en: [
-        "<strong>Co-founded a sports-intelligence platform</strong> for professional football clubs, working <strong>across the stack</strong> (ML, data analysis, backend, and frontend) for player scouting and evaluation across <strong>10+ LATAM leagues</strong>.",
-        "Designed the proprietary <strong>TCA Score</strong>, a league-adjusted metric that rates how well a player performs in their role to enable fair cross-competition comparison.",
-        "Built the analytics engine powering scout search, side-by-side player comparison with <strong>position-adjusted percentiles</strong>, and match analysis (xG, shot maps, build-up by phase).",
-      ],
-      es: [
-        "<strong>Cofundé una plataforma de inteligencia deportiva</strong> para clubes de fútbol profesional, trabajando <strong>en todo el stack</strong> (ML, análisis de datos, backend y frontend) para el scouting y la evaluación de jugadores en <strong>más de 10 ligas de LATAM</strong>.",
-        "Diseñé el <strong>TCA Score</strong>, una métrica propia ajustada por liga que evalúa qué tan bien rinde un jugador en su rol, para permitir comparaciones justas entre competiciones.",
-        "Construí el motor de análisis detrás de la búsqueda de jugadores, la comparación lado a lado con <strong>percentiles ajustados por posición</strong> y el análisis de partidos (xG, mapas de tiros, construcción por fases).",
-      ],
-      fr: [
-        "<strong>J'ai cofondé une plateforme d'intelligence sportive</strong> pour les clubs de football professionnels, en travaillant <strong>sur toute la stack</strong> (ML, analyse de données, backend et frontend) pour le recrutement et l'évaluation de joueurs dans <strong>plus de 10 ligues d'Amérique latine</strong>.",
-        "J'ai conçu le <strong>TCA Score</strong>, une métrique propriétaire ajustée selon la ligue qui évalue la performance d'un joueur dans son rôle, afin de comparer équitablement les compétitions.",
-        "J'ai développé le moteur d'analyse qui alimente la recherche de joueurs, la comparaison côte à côte avec des <strong>percentiles ajustés au poste</strong> et l'analyse de matchs (xG, cartes de tirs, construction par phase).",
-      ],
-    },
-    stack: ["Python", "Machine Learning", "Data Engineering", "React"],
   },
   {
     role: {
