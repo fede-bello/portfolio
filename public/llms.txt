@@ -6,9 +6,9 @@ Ingeniero de Machine Learning uruguayo, máster MVA en la ENS Paris-Saclay. / In
 
 ## Pages
 
-- [Home (English)](https://www.fedebello.com/): overview and links
-- [Inicio (Español)](https://www.fedebello.com/es): presentación en español
-- [Accueil (Français)](https://www.fedebello.com/fr): présentation en français
+The whole site is available in English (root), Spanish (`/es/...`) and French (`/fr/...`).
+
+- [Home](https://www.fedebello.com/): overview and links ([Español](https://www.fedebello.com/es), [Français](https://www.fedebello.com/fr))
 - [Experience](https://www.fedebello.com/experience): roles at Tryolabs, The Hawk Eye Football, UdelaR, Eagerworks, Sinapsis
 - [Projects](https://www.fedebello.com/projects): ML and software projects
 - [Publications](https://www.fedebello.com/publications): papers (including ICPRAM 2026, GNN anomaly detection) and conference talks

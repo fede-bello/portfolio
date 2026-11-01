@@ -1,16 +1,18 @@
 import { useTheme } from "@/hooks/useTheme";
 import { Moon, Sun } from "lucide-react";
 import * as Switch from "@radix-ui/react-switch";
+import { useI18n } from "@/hooks/useI18n";
 
 export function ThemeToggle(): JSX.Element {
   const { theme, toggle } = useTheme();
   const isDark = theme === "dark";
+  const { t } = useI18n();
 
   return (
     <div className="inline-flex items-center gap-2">
       {isDark ? <Sun className="size-4" /> : <Moon className="size-4" />}
       <label className="text-sm hidden sm:inline" id="theme-label">
-        {isDark ? "Light" : "Dark"} mode
+        {isDark ? t.theme.light : t.theme.dark}
       </label>
       <Switch.Root
         aria-labelledby="theme-label"

@@ -3,14 +3,19 @@ import { Container } from "@/components/Container";
 import { Panel } from "@/components/Panel";
 import { Icon } from "@/components/Icon";
 import { TechBadge } from "@/components/TechBadge";
-import { conferences, publications } from "@/publications/data";
+import { getConferences, getPublications } from "@/publications/data";
+import { useI18n } from "@/hooks/useI18n";
 
 export function PublicationsPage(): JSX.Element {
+  const { lang, t } = useI18n();
+  const publications = getPublications(lang);
+  const conferences = getConferences(lang);
+
   return (
     <div>
       <SectionHeader
-        title="Publications"
-        subtitle="Peer-reviewed work and talks"
+        title={t.publications.title}
+        subtitle={t.publications.subtitle}
       />
       <Container className="max-w-5xl pb-16 space-y-6">
         {publications.map((pub) => (
@@ -38,7 +43,7 @@ export function PublicationsPage(): JSX.Element {
               <div className="max-w-[65ch]">
                 <header className="flex flex-wrap items-baseline gap-2">
                   <h3 className="text-lg font-semibold">{pub.title}</h3>
-                  <TechBadge name="Author" />
+                  <TechBadge name={t.publications.author} />
                 </header>
 
                 <p className="mt-2 text-slate-700 dark:text-slate-200">
@@ -56,7 +61,7 @@ export function PublicationsPage(): JSX.Element {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 text-sm text-blue-600 hover:underline dark:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 rounded"
                       >
-                        Paper
+                        {t.publications.paper}
                         <Icon name="arrow-up-right" className="h-4 w-4" />
                       </a>
                     </div>
@@ -68,7 +73,7 @@ export function PublicationsPage(): JSX.Element {
         ))}
 
         <div className="pt-6">
-          <h2 className="text-xl font-semibold tracking-tight">Conferences</h2>
+          <h2 className="text-xl font-semibold tracking-tight">{t.publications.conferences}</h2>
           <ul className="mt-4 space-y-4">
             {conferences.map((conf) => (
               <li key={`${conf.event}-${conf.date}`}>
@@ -115,7 +120,7 @@ export function PublicationsPage(): JSX.Element {
                               rel="noopener noreferrer"
                               className="inline-flex items-center gap-1 text-sm text-blue-600 hover:underline dark:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 rounded"
                             >
-                              Website
+                              {t.publications.website}
                               <Icon name="arrow-up-right" className="h-4 w-4" />
                             </a>
                           </div>

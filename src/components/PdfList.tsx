@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Icon } from "@/components/Icon";
 import type { ProjectAttachment } from "@/types/projects";
+import { useI18n } from "@/hooks/useI18n";
 
 type Props = {
   attachments?: ReadonlyArray<ProjectAttachment>;
@@ -15,6 +16,8 @@ function humanizeFilename(name: string): string {
 }
 
 export function PdfList({ attachments, onView }: Props): JSX.Element | null {
+  const { t } = useI18n();
+  const [open, setOpen] = useState(false);
   const files =
     attachments?.filter((a) => a.href.toLowerCase().endsWith(".pdf")) ?? [];
   if (files.length === 0) return null;
@@ -38,9 +41,9 @@ export function PdfList({ attachments, onView }: Props): JSX.Element | null {
             type="button"
             className="inline-flex items-center gap-1 h-8 rounded-md border border-slate-200 dark:border-slate-800 px-2 text-sm hover:bg-slate-50 dark:hover:bg-slate-900"
             onClick={() => onView(file)}
-            aria-label={`View ${file.title || humanizeFilename(file.href)}`}
+            aria-label={`${t.pdf.view} ${file.title || humanizeFilename(file.href)}`}
           >
-            <Icon name="eye" className="size-4" /> View
+            <Icon name="eye" className="size-4" /> {t.pdf.view}
           </button>
           <a
             href={file.href}
@@ -48,16 +51,15 @@ export function PdfList({ attachments, onView }: Props): JSX.Element | null {
             rel="noopener noreferrer"
             download
             className="inline-flex items-center gap-1 h-8 rounded-md border border-slate-200 dark:border-slate-800 px-2 text-sm hover:bg-slate-50 dark:hover:bg-slate-900"
-            aria-label={`Download ${file.title || humanizeFilename(file.href)}`}
+            aria-label={`${t.pdf.download} ${file.title || humanizeFilename(file.href)}`}
           >
-            <Icon name="download" className="size-4" /> Download
+            <Icon name="download" className="size-4" /> {t.pdf.download}
           </a>
         </div>
       </div>
     );
   }
 
-  const [open, setOpen] = useState(false);
   return (
     <div className="mt-3">
       <button
@@ -75,7 +77,7 @@ export function PdfList({ attachments, onView }: Props): JSX.Element | null {
           name="file-text"
           className="size-4 text-slate-500 dark:text-slate-400"
         />
-        Reports ({files.length})
+        {t.pdf.reports(files.length)}
         <Icon
           name={open ? "chevron-down" : "chevron-right"}
           className="size-4"
@@ -110,11 +112,11 @@ export function PdfList({ attachments, onView }: Props): JSX.Element | null {
                   type="button"
                   className="inline-flex items-center gap-1 h-8 rounded-md border border-slate-200 dark:border-slate-800 px-2 text-sm hover:bg-slate-50 dark:hover:bg-slate-900"
                   onClick={() => onView(file)}
-                  aria-label={`View ${
+                  aria-label={`${t.pdf.view} ${
                     file.title || humanizeFilename(file.href)
                   }`}
                 >
-                  <Icon name="eye" className="size-4" /> View
+                  <Icon name="eye" className="size-4" /> {t.pdf.view}
                 </button>
                 <a
                   href={file.href}
@@ -122,11 +124,11 @@ export function PdfList({ attachments, onView }: Props): JSX.Element | null {
                   rel="noopener noreferrer"
                   download
                   className="inline-flex items-center gap-1 h-8 rounded-md border border-slate-200 dark:border-slate-800 px-2 text-sm hover:bg-slate-50 dark:hover:bg-slate-900"
-                  aria-label={`Download ${
+                  aria-label={`${t.pdf.download} ${
                     file.title || humanizeFilename(file.href)
                   }`}
                 >
-                  <Icon name="download" className="size-4" /> Download
+                  <Icon name="download" className="size-4" /> {t.pdf.download}
                 </a>
               </div>
             </li>

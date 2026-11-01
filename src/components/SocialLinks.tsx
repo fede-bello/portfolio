@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import { Icon } from "@/components/Icon";
+import { useI18n } from "@/hooks/useI18n";
 
 type Social = {
   name: string;
   href: string;
   icon: string;
-  label: string;
   subtitle: string;
   badgeClasses: string;
 };
@@ -15,7 +15,6 @@ const socials: Social[] = [
     name: "GitHub",
     href: "https://github.com/fede-bello",
     icon: "github",
-    label: "Visit GitHub profile",
     subtitle: "fede-bello",
     badgeClasses:
       "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-200 group-hover:bg-slate-200 dark:group-hover:bg-slate-700",
@@ -24,7 +23,6 @@ const socials: Social[] = [
     name: "X (Twitter)",
     href: "https://x.com/fede_bello29",
     icon: "X",
-    label: "Visit X (Twitter) profile",
     subtitle: "@fede_bello29",
     badgeClasses:
       "bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300 group-hover:bg-cyan-200/80 dark:group-hover:bg-cyan-900/50",
@@ -33,7 +31,6 @@ const socials: Social[] = [
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/federico-bello-/",
     icon: "linkedin",
-    label: "Visit LinkedIn profile",
     subtitle: "Federico Bello",
     badgeClasses:
       "bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-300 group-hover:bg-sky-200/80 dark:group-hover:bg-sky-900/50",
@@ -45,6 +42,7 @@ type Props = {
 };
 
 export function SocialLinks({ className }: Props): JSX.Element {
+  const { t } = useI18n();
   return (
     <ul
       className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 ${
@@ -62,7 +60,7 @@ export function SocialLinks({ className }: Props): JSX.Element {
             href={item.href}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={item.label}
+            aria-label={t.social.visitProfile(item.name)}
             className="group block rounded-xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-950/60 backdrop-blur supports-[backdrop-filter]:bg-white/40 px-4 py-3 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 dark:focus-visible:ring-slate-700"
           >
             <div className="flex items-center gap-3">

@@ -1,15 +1,19 @@
 import { SectionHeader } from "@/components/SectionHeader";
 import { motion } from "framer-motion";
 import { Container } from "@/components/Container";
-import { experiences } from "@/experience/data";
+import { getExperiences } from "@/experience/data";
+import { useI18n } from "@/hooks/useI18n";
 import { ExperienceCard } from "@/components/ExperienceCard";
 
 export function ExperiencePage(): JSX.Element {
+  const { lang, t } = useI18n();
+  const experiences = getExperiences(lang);
+
   return (
     <div>
       <SectionHeader
-        title="Experience"
-        subtitle="Engineering, teaching, and research across ML, Applied Mathematics, and Software"
+        title={t.experience.title}
+        subtitle={t.experience.subtitle}
       />
       <Container className="max-w-5xl pb-16 space-y-6">
         {experiences.map((exp) => (
