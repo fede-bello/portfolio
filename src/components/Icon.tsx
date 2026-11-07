@@ -15,7 +15,7 @@ import {
   FiX,
   FiExternalLink,
 } from "react-icons/fi";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaGoogleScholar } from "react-icons/fa6";
 
 type Props = {
   name: string;
@@ -37,7 +37,7 @@ const ICON_MAP: Record<string, IconType> = {
   "file-text": FiFileText,
   close: FiX,
   external: FiExternalLink,
-  X: FaXTwitter,
+  scholar: FaGoogleScholar,
 };
 
 export const Icon = memo(function Icon({
