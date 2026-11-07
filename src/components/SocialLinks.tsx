@@ -20,10 +20,10 @@ const socials: Social[] = [
       "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-200 group-hover:bg-slate-200 dark:group-hover:bg-slate-700",
   },
   {
-    name: "X (Twitter)",
-    href: "https://x.com/fede_bello29",
-    icon: "X",
-    subtitle: "@fede_bello29",
+    name: "Google Scholar",
+    href: "https://scholar.google.com/citations?user=l0gxO28AAAAJ",
+    icon: "scholar",
+    subtitle: "Federico Bello",
     badgeClasses:
       "bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-300 group-hover:bg-cyan-200/80 dark:group-hover:bg-cyan-900/50",
   },
