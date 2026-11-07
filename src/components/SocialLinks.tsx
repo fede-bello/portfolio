@@ -72,10 +72,10 @@ export function SocialLinks({ className }: Props): JSX.Element {
 
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between gap-2">
-                  <span className="font-medium text-sm text-slate-900 dark:text-white">
+                  <span className="font-medium text-sm text-slate-900 dark:text-white whitespace-nowrap">
                     {item.name}
                   </span>
-                  <span className="opacity-0 translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200">
+                  <span className="shrink-0 opacity-0 translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200">
                     <Icon
                       name="arrow-up-right"
                       className="size-3.5 text-slate-500 dark:text-slate-400"
