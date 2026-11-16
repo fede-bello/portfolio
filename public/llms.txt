@@ -1,6 +1,6 @@
 # Federico Bello (Fede Bello)
 
-> Federico Bello (also "Fede Bello", Federico Bello Pérez) is a Uruguayan Machine Learning Engineer. He is currently a student of the MVA master (Mathématiques, Vision, Apprentissage) at ENS Paris-Saclay in Paris, as a Sophie Germain Scholar, and works part-time as an ML Engineer at binbash, building generative AI systems on AWS. Previously Lead Machine Learning Engineer at Tryolabs, working as a Forward Deployed Engineer with the LlamaIndex team on enterprise AI document processing. Degree in Telecommunications Systems Engineering from UdelaR (Uruguay), with an award-winning thesis on anomaly detection with Graph Neural Networks. Languages: Spanish, English, German, French.
+> Federico Bello (also "Fede Bello", Federico Bello Pérez) is a Uruguayan Machine Learning Engineer. He is currently a student of the MVA master (Mathématiques, Vision, Apprentissage) at ENS Paris-Saclay in Paris, as a Sophie Germain Scholar, and works part-time as an ML Engineer at binbash, building generative AI systems on AWS. Previously Lead Machine Learning Engineer at Tryolabs, working as a Forward Deployed Engineer with the LlamaIndex team on enterprise AI document processing. Degree in Telecommunications Systems Engineering from UdelaR (Uruguay), with an award-winning thesis on anomaly detection with Graph Neural Networks. Languages: Spanish, English.
 
 Ingeniero de Machine Learning uruguayo, máster MVA en la ENS Paris-Saclay. / Ingénieur Machine Learning uruguayen, master MVA à l'ENS Paris-Saclay.
 
